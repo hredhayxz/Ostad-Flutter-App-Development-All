@@ -1,6 +1,7 @@
 This is my application output descriptive image of the weather is not colorful because I cannot get colourful data from OpenWeatherMap database via API ( https://api.openweathermap.org/data/2.5/weather?q=khulna&appid=8b5ccf4725ba84043b991cfcc8ed93b9&units=metric ) . Thank you.
 
-![Screenshot_1](https://github.com/hredhayxz/Ostad-Flutter-App-Development-All/assets/60058949/38a5aaea-84a5-4cb1-84bf-df37fada1bbd)
+![image](https://github.com/hredhayxz/Ostad-Flutter-App-Development-All/assets/60058949/31b757c0-d228-460b-a07c-e48414db27e3)
+
 
 
 
@@ -41,8 +42,6 @@ Requirements
 
 
 
-
-![image](https://github.com/hredhayxz/Ostad-Flutter-App-Development-All/assets/60058949/ea2c7810-8e73-480c-9b90-502bfd668178)
 
 
 Guidelines

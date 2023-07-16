@@ -40,23 +40,25 @@ class PortraitLayoutScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const Text(
-              'Hi there 👋\nI am Md Alhaz Mondal Hredhay. I am currently working on Mobile Development. As mobile app devleoper I use Flutter which is a framework for cross platform native app development and I really love it.',
+              'Hi there 👋\nI am Md Alhaz Mondal Hredhay. I am currently working on Mobile Development. As a mobile app developer, I use Flutter, which is a framework for cross-platform native app development, and I really love it.',
             ),
             const SizedBox(
               height: 20,
             ),
-            GridView.count(
-              physics: const ScrollPhysics(),
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
+            GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              crossAxisCount: 3,
-              children: [
-                for (int i = 1; i <= 10; i++)
-                  Image.network(
-                    'https://he-s3.s3.amazonaws.com/media/avatars/hredhayxz/resized/200/5be5e34alhaz.jpg',
-                  ),
-              ],
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
+              ),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Image.network(
+                  'https://he-s3.s3.amazonaws.com/media/avatars/hredhayxz/resized/200/5be5e34alhaz.jpg',
+                );
+              },
             ),
           ],
         ),

@@ -28,7 +28,8 @@ class AddNewTaskScreen extends StatelessWidget {
                   const SizedBox(height: 16,),
                   TextFormField(
                     decoration: const InputDecoration(
-                        hintText: 'Title'
+                        hintText: 'Title',
+                        labelText: 'Title',
                     ),
                   ),
                   const SizedBox(height: 8,),
@@ -36,6 +37,7 @@ class AddNewTaskScreen extends StatelessWidget {
                     maxLines: 4,
                     decoration: const InputDecoration(
                       hintText: 'Description',
+                      labelText: 'Description',
                     ),
                   ),
                   const SizedBox(height: 16,),

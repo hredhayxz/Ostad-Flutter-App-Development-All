@@ -12,7 +12,7 @@ class TaskListTile extends StatelessWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Title will be here'),
+          const Text('Description will be here'),
           const Text('Date'),
           Row(
             children: [

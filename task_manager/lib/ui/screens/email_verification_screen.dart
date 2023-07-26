@@ -36,6 +36,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'Email',
+                    labelText: 'Email',
                   ),
                 ),
                 const SizedBox(

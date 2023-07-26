@@ -7,6 +7,7 @@ class TaskManagerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Task Manager',
       theme: ThemeData(
         brightness: Brightness.light,
@@ -16,6 +17,7 @@ class TaskManagerApp extends StatelessWidget {
           fillColor: Colors.white,
           contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           border: OutlineInputBorder(borderSide: BorderSide.none),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.green)),
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(

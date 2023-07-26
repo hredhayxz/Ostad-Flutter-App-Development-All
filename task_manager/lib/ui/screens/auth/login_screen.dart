@@ -32,6 +32,7 @@ class LoginScreen extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: 'Email',
+                      labelText: 'Email',
                     ),
                   ),
                   const SizedBox(
@@ -41,6 +42,7 @@ class LoginScreen extends StatelessWidget {
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'Password',
+                      labelText: 'Password',
                     ),
                   ),
                   const SizedBox(

@@ -88,6 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         hintText: 'Email',
+                        labelText: 'Email',
                       ),
                       validator: (String? value) {
                         if (value?.isEmpty ?? true) {
@@ -104,6 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
                         hintText: 'First name',
+                        labelText: 'First name',
                       ),
                       validator: (String? value) {
                         if (value?.isEmpty ?? true) {
@@ -120,6 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
                         hintText: 'Last name',
+                        labelText: 'Last name',
                       ),
                       validator: (String? value) {
                         if (value?.isEmpty ?? true) {
@@ -136,6 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.phone,
                       decoration: const InputDecoration(
                         hintText: 'Mobile',
+                        labelText: 'Mobile',
                       ),
                       validator: (String? value) {
                         if ((value?.isEmpty ?? true) || value!.length < 11) {
@@ -152,6 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: true,
                       decoration: const InputDecoration(
                         hintText: 'Password',
+                        labelText: 'Password',
                       ),
                       validator: (String? value) {
                         if ((value?.isEmpty ?? true) || value!.length <= 5) {

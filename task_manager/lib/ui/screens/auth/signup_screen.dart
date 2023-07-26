@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intro_widget/data/models/network_response.dart';
-import 'package:intro_widget/data/services/network_caller.dart';
-import 'package:intro_widget/data/utils/urls.dart';
-import 'package:intro_widget/ui/widgets/screen_background.dart';
+import 'package:task_manager/data/models/network_response.dart';
+import 'package:task_manager/data/services/network_caller.dart';
+import 'package:task_manager/data/utility/urls.dart';
+import 'package:task_manager/ui/widgets/screen_background.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);

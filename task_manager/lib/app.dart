@@ -3,6 +3,7 @@ import 'package:task_manager/ui/screens/splash_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({Key? key}) : super(key: key);
+  static GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

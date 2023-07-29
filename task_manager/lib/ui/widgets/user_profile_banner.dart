@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/auth/login_screen.dart';
+import 'package:task_manager/ui/screens/update_profile_screen.dart';
 import 'package:task_manager/ui/utility/auth_utility.dart';
 
 class UserProfileBanner extends StatefulWidget {
@@ -15,6 +16,10 @@ class _UserProfileBannerState extends State<UserProfileBanner> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (
+            context) => const UpdateProfileScreen()));
+      },
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
       tileColor: Colors.green,
       leading: CircleAvatar(

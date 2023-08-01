@@ -1,9 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/models/network_response.dart';
+import 'package:task_manager/data/models/task_list_model.dart';
+import 'package:task_manager/data/services/network_caller.dart';
+import 'package:task_manager/data/utility/urls.dart';
 import 'package:task_manager/ui/widgets/task_list_tile.dart';
 import 'package:task_manager/ui/widgets/user_profile_banner.dart';
 
-class CompletedTaskScreen extends StatelessWidget {
+class CompletedTaskScreen extends StatefulWidget {
   const CompletedTaskScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CompletedTaskScreen> createState() => _CompletedTaskScreenState();
+}
+
+class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
+  bool _completedTasksInProgress = false;
+  TaskListModel _taskListModel = TaskListModel();
+
+  Future<void> completedTasks() async {
+    _completedTasksInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    final NetworkResponse response =
+    await NetworkCaller().getRequest(Urls.completedTasks);
+    if (response.isSuccess) {
+      _taskListModel = TaskListModel.fromJson(response.body!);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Completed tasks get failed')));
+      }
+    }
+    _completedTasksInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      completedTasks();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +54,16 @@ class CompletedTaskScreen extends StatelessWidget {
           children: [
             const UserProfileBanner(),
             Expanded(
-              child: ListView.separated(
-                itemCount: 20,
+              child: _completedTasksInProgress
+                  ? const Center(
+                child: CircularProgressIndicator(),
+              )
+                  : ListView.separated(
+                itemCount: _taskListModel.data?.length ?? 0,
                 itemBuilder: (context, index) {
-                  return SizedBox();
-                  //return const TaskListTile();
+                  return TaskListTile(
+                    data: _taskListModel.data![index],
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider(

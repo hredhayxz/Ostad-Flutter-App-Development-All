@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
@@ -12,11 +10,15 @@ import 'package:task_manager/ui/utility/auth_utility.dart';
 class NetworkCaller {
   Future<NetworkResponse> getRequest(String url) async {
     try {
-      Response response = await get(Uri.parse(url), headers: {
-        'token': AuthUtility.userInfo.token.toString()
-      });
+      Response response = await get(Uri.parse(url),
+          headers: {'token': AuthUtility.userInfo.token.toString()});
+      log(response.statusCode.toString());
+      log(response.body);
       if (response.statusCode == 200) {
-        return NetworkResponse(true, response.statusCode, jsonDecode(response.body));
+        return NetworkResponse(
+            true, response.statusCode, jsonDecode(response.body));
+      } else if (response.statusCode == 401) {
+        gotoLogin();
       } else {
         return NetworkResponse(false, response.statusCode, null);
       }
@@ -26,7 +28,8 @@ class NetworkCaller {
     return NetworkResponse(false, -1, null);
   }
 
-  Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body) async {
+  Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body,
+      {bool isLogin = false}) async {
     try {
       Response response = await post(
         Uri.parse(url),
@@ -39,9 +42,15 @@ class NetworkCaller {
       log(response.statusCode.toString());
       log(response.body);
       if (response.statusCode == 200) {
-        return NetworkResponse(true, response.statusCode, jsonDecode(response.body));
+        return NetworkResponse(
+          true,
+          response.statusCode,
+          jsonDecode(response.body),
+        );
       } else if (response.statusCode == 401) {
-        gotoLogin();
+        if (isLogin) {
+          gotoLogin();
+        }
       } else {
         return NetworkResponse(false, response.statusCode, null);
       }
@@ -54,8 +63,8 @@ class NetworkCaller {
   Future<void> gotoLogin() async {
     await AuthUtility.clearUserInfo();
     Navigator.pushAndRemoveUntil(
-        TaskManagerApp.globalKey.currentState!.context,
+        TaskManagerApp.globalKey.currentContext!,
         MaterialPageRoute(builder: (context) => const LoginScreen()),
-            (route) => false);
+        (route) => false);
   }
 }

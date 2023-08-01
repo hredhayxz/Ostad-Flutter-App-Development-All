@@ -16,7 +16,8 @@ class CompletedTaskScreen extends StatelessWidget {
               child: ListView.separated(
                 itemCount: 20,
                 itemBuilder: (context, index) {
-                  return const TaskListTile();
+                  return SizedBox();
+                  //return const TaskListTile();
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider(

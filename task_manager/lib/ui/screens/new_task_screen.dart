@@ -5,6 +5,8 @@ import 'package:task_manager/data/models/task_list_model.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utility/urls.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
+import 'package:task_manager/ui/screens/update_task_status_sheet.dart';
+import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/summary_card.dart';
 import 'package:task_manager/ui/widgets/task_list_tile.dart';
 import 'package:task_manager/ui/widgets/user_profile_banner.dart';
@@ -24,6 +26,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   @override
   void initState() {
     super.initState();
+    // after widget binding
     WidgetsBinding.instance.addPostFrameCallback((_) {
       getCountSummary();
       getNewTasks();
@@ -72,10 +75,42 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     }
   }
 
+  Future<void> deleteTask(String taskId) async {
+    final NetworkResponse response =
+        await NetworkCaller().getRequest(Urls.deleteTask(taskId));
+    if (response.isSuccess) {
+      _taskListModel.data!.removeWhere((element) => element.sId == taskId);
+      getCountSummary();
+      if (mounted) {
+        setState(() {});
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Deletion of task has been failed')));
+      }
+    }
+  }
+
+  void showStatusUpdateBottomSheet(TaskData task) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return UpdateTaskStatusSheet(
+            task: task,
+            onUpdate: () {
+              getCountSummary();
+              getNewTasks();
+            });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: ScreenBackground(
         child: Column(
           children: [
             const UserProfileBanner(),
@@ -118,6 +153,13 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                         itemBuilder: (context, index) {
                           return TaskListTile(
                             data: _taskListModel.data![index],
+                            onDeleteTap: () {
+                              deleteTask(_taskListModel.data![index].sId!);
+                            },
+                            onEditTap: () {
+                              showStatusUpdateBottomSheet(
+                                  _taskListModel.data![index]);
+                            },
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {

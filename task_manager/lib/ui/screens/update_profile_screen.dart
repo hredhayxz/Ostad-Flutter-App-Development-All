@@ -1,87 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/data/models/network_response.dart';
-import 'package:task_manager/data/services/network_caller.dart';
-import 'package:task_manager/data/utility/urls.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/user_profile_banner.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
-  const UpdateProfileScreen({super.key});
+  const UpdateProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
 }
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _firstNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
-   bool _updateInProgress = false;
-  Future<void> updateProfile() async {
-    _updateInProgress = true;
-    if (mounted) {
-      setState(() {});
-    }
 
-    Map<String, dynamic> requestBody = {
-      "email": _emailTEController.text.trim(),
-      "firstName": _firstNameTEController.text.trim(),
-      "lastName": _lastNameTEController.text.trim(),
-      "mobile": _mobileTEController.text.trim(),
-      "password": _passwordTEController.text,
-      "photo": ""
-    };
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  XFile? imageFile;
+  ImagePicker picker = ImagePicker();
 
-    final NetworkResponse response =
-    await NetworkCaller().postRequest(Urls.registration, requestBody);
-    _updateInProgress = false;
-    if (mounted) {
-      setState(() {});
-    }
-    if (response.isSuccess) {
-      _emailTEController.clear();
-      _passwordTEController.clear();
-      _firstNameTEController.clear();
-      _lastNameTEController.clear();
-      _mobileTEController.clear();
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Update success!')));
-      }
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Update failed!')));
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: ScreenBackground(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const UserProfileBanner(),
+              const UserProfileBanner(
+                isUpdateScreen: true,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  'Update Profile',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 64,
+                      InkWell(
+                        onTap: () {
+                          selectImage();
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(color: Colors.white),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(14),
+                                color: Colors.grey,
+                                child: const Text(
+                                  'Photos',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              Visibility(
+                                  visible: imageFile != null,
+                                  child: Text(imageFile?.name ?? ''))
+                            ],
+                          ),
+                        ),
                       ),
-                      Text(
-                        'Update Profile',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
                       const SizedBox(
-                        height: 16,
+                        height: 12,
                       ),
                       TextFormField(
                         controller: _emailTEController,
@@ -170,27 +169,35 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        child: Visibility(
-                          visible: _updateInProgress == false,
-                          replacement: const Center(child: CircularProgressIndicator()),
-                          child: ElevatedButton(
-                              onPressed: () {
-                                if (!_formKey.currentState!.validate()) {
-                                  return;
-                                }
-                                updateProfile();
-                              },
-                              child: const Icon(Icons.arrow_forward_ios)),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            //updateProfile();
+                          },
+                          child: const Text('Update'),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
               ),
             ],
-          )
+          ),
         ),
       ),
     );
+  }
+
+  void selectImage() {
+    picker.pickImage(source: ImageSource.gallery).then((xFile) {
+      if (xFile != null) {
+        imageFile = xFile;
+        if (mounted) {
+          setState(() {});
+        }
+      }
+    });
   }
 }

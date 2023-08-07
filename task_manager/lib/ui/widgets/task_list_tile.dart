@@ -29,7 +29,13 @@ class TaskListTile extends StatelessWidget {
                   data.status ?? 'New',
                   style: const TextStyle(color: Colors.white),
                 ),
-                backgroundColor: Colors.blue,
+                backgroundColor: data.status == 'New'
+                    ? Colors.blue
+                    : data.status == 'Progress'
+                        ? Colors.purpleAccent
+                        : data.status == 'Cancelled'
+                            ? Colors.pink
+                            : Colors.green,
               ),
               const Spacer(),
               IconButton(

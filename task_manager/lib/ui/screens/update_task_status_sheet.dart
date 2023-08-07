@@ -38,7 +38,7 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess && response.statusCode == 200) {
       widget.onUpdate();
       if (mounted) {
         Navigator.pop(context);
@@ -63,19 +63,25 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
               padding: EdgeInsets.all(16), child: Text('Update Status')),
           Expanded(
             child: ListView.builder(
-                itemCount: taskStatusList.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
+              itemCount: taskStatusList.length,
+              itemBuilder: (context, index) {
+                bool isSelected = _selectedTask == taskStatusList[index];
+                return Container(
+                  color: isSelected ? Colors.green : Colors.transparent,
+                  // Set the background color
+                  child: ListTile(
                     onTap: () {
                       _selectedTask = taskStatusList[index];
                       setState(() {});
                     },
                     title: Text(taskStatusList[index].toUpperCase()),
-                    trailing: _selectedTask == taskStatusList[index]
-                        ? const Icon(Icons.check,color: Colors.green,)
+                    trailing: isSelected
+                        ? const Icon(Icons.check, color: Colors.white)
                         : null,
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
           ),
           Padding(
               padding: const EdgeInsets.all(16),

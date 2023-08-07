@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       LoginModel model = LoginModel.fromJson(response.body!);
       await AuthUtility.saveUserInfo(model);
       if (mounted) {

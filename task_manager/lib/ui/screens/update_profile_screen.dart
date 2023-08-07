@@ -59,7 +59,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       userData.firstName = _firstNameTEController.text.trim();
       userData.lastName = _lastNameTEController.text.trim();
       userData.mobile = _mobileTEController.text.trim();
@@ -212,8 +212,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             hintText: 'Password',
                           ),
                           validator: (String? value) {
-                            if ((value?.isEmpty ?? true) ||
-                                value!.length <= 5) {
+                            if (value!.isNotEmpty&&value!.length <= 5) {
                               return 'Enter a password more than 6 letters';
                             }
                             return null;
@@ -230,6 +229,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                 child: CircularProgressIndicator()),
                             child: ElevatedButton(
                               onPressed: () {
+                                if (!_formKey.currentState!.validate()) {
+                                  return;
+                                }
                                 updateProfile();
                               },
                               child: const Text('Update'),

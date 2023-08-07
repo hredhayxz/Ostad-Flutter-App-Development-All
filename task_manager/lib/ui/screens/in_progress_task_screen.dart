@@ -26,7 +26,7 @@ class _InProgressTaskScreenState extends State<InProgressTaskScreen> {
     }
     final NetworkResponse response =
         await NetworkCaller().getRequest(Urls.inProgressTasks);
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       _taskListModel = TaskListModel.fromJson(response.body!);
     } else {
       if (mounted) {
@@ -50,7 +50,7 @@ class _InProgressTaskScreenState extends State<InProgressTaskScreen> {
   Future<void> deleteTask(String taskId) async {
     final NetworkResponse response =
     await NetworkCaller().getRequest(Urls.deleteTask(taskId));
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       _taskListModel.data!.removeWhere((element) => element.sId == taskId);
       if (mounted) {
         setState(() {

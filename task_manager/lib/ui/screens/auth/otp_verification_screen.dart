@@ -32,7 +32,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Otp verification success!')));

@@ -28,7 +28,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Email verification successful!')));

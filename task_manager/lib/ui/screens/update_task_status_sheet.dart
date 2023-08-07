@@ -38,7 +38,7 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       widget.onUpdate();
       if (mounted) {
         Navigator.pop(context);

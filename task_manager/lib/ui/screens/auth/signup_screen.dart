@@ -43,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess) {
+    if (response.isSuccess && response.statusCode==200) {
       _emailTEController.clear();
       _passwordTEController.clear();
       _firstNameTEController.clear();

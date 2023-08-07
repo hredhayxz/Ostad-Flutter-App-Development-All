@@ -32,27 +32,24 @@ class _UserProfileAppBarState extends State<UserProfileAppBar> {
         },
         child: Row(
           children: [
-            Visibility(
-              visible: (widget.isUpdateScreen ?? false) == false,
-              child: Row(
-                children: [
-                  ClipOval(
-                    child: Container(
-                      color: Colors.white,
-                      child: CachedNetworkImage(
-                        placeholder: (_, __) =>
-                            Image.asset('assets/images/person.png', width: 30),
-                        imageUrl: AuthUtility.userInfo.data?.photo ?? '',
-                        errorWidget: (_, __, ___) =>
-                            Image.asset('assets/images/person.png', width: 30),
-                      ),
+            Row(
+              children: [
+                ClipOval(
+                  child: Container(
+                    color: Colors.white,
+                    child: CachedNetworkImage(
+                      placeholder: (_, __) =>
+                          Image.asset('assets/images/person.png', width: 30),
+                      imageUrl: AuthUtility.userInfo.data?.photo ?? '',
+                      errorWidget: (_, __, ___) =>
+                          Image.asset('assets/images/person.png', width: 30),
                     ),
                   ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+              ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

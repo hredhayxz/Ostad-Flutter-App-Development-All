@@ -23,7 +23,7 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
 
   @override
   void initState() {
-    _selectedTask = widget.task.status!.toLowerCase();
+    _selectedTask = widget.task.status!;
     super.initState();
   }
 
@@ -33,7 +33,7 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
       setState(() {});
     }
     final NetworkResponse response =
-        await NetworkCaller().getRequest(Urls.updateTask(taskId, newStatus));
+    await NetworkCaller().getRequest(Urls.updateTask(taskId, newStatus));
     updateTaskInProgress = false;
     if (mounted) {
       setState(() {});

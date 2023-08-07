@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:task_manager/data/models/login_model.dart';
+import 'package:task_manager/data/models/network_response.dart';
+import 'package:task_manager/data/services/network_caller.dart';
+import 'package:task_manager/data/utility/urls.dart';
+import 'package:task_manager/ui/utility/auth_utility.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
-import 'package:task_manager/ui/widgets/user_profile_banner.dart';
+import 'package:task_manager/ui/widgets/user_profile_appbar.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({Key? key}) : super(key: key);
@@ -11,6 +16,7 @@ class UpdateProfileScreen extends StatefulWidget {
 }
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
+  UserData userData = AuthUtility.userInfo.data!;
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _firstNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
@@ -20,36 +26,85 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   XFile? imageFile;
   ImagePicker picker = ImagePicker();
+  bool _profileUpdateInProgress = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _emailTEController.text = userData.email ?? '';
+    _firstNameTEController.text = userData.firstName ?? '';
+    _lastNameTEController.text = userData.lastName ?? '';
+    _mobileTEController.text = userData.mobile ?? '';
+  }
+
+  Future<void> updateProfile() async {
+    _profileUpdateInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    final Map<String, dynamic> requestBody = {
+      "firstName": _firstNameTEController.text.trim(),
+      "lastName": _lastNameTEController.text.trim(),
+      "mobile": _mobileTEController.text.trim(),
+      "photo": ""
+    };
+    if (_passwordTEController.text.isNotEmpty &&
+        _passwordTEController.text.length >= 5) {
+      requestBody['password'] = _passwordTEController.text;
+    }
+
+    final NetworkResponse response =
+        await NetworkCaller().postRequest(Urls.profileUpdate, requestBody);
+    _profileUpdateInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+    if (response.isSuccess) {
+      userData.firstName = _firstNameTEController.text.trim();
+      userData.lastName = _lastNameTEController.text.trim();
+      userData.mobile = _mobileTEController.text.trim();
+      AuthUtility.updateUserInfo(userData);
+      _passwordTEController.clear();
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Profile updated!')));
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Profile update failed! Try again.')));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenBackground(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const UserProfileBanner(
-                isUpdateScreen: true,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'Update Profile',
-                  style: Theme.of(context).textTheme.titleLarge,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const UserProfileAppBar(
+                  isUpdateScreen: true,
                 ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Form(
-                  key: _formKey,
+                const SizedBox(
+                  height: 24,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    'Update Profile',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
                       InkWell(
@@ -85,9 +140,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       TextFormField(
                         controller: _emailTEController,
                         keyboardType: TextInputType.emailAddress,
+                        readOnly: true,
                         decoration: const InputDecoration(
                           hintText: 'Email',
-                          labelText: 'Email',
                         ),
                         validator: (String? value) {
                           if (value?.isEmpty ?? true) {
@@ -104,7 +159,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           hintText: 'First name',
-                          labelText: 'First name',
                         ),
                         validator: (String? value) {
                           if (value?.isEmpty ?? true) {
@@ -121,7 +175,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           hintText: 'Last name',
-                          labelText: 'Last name',
                         ),
                         validator: (String? value) {
                           if (value?.isEmpty ?? true) {
@@ -138,7 +191,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         keyboardType: TextInputType.phone,
                         decoration: const InputDecoration(
                           hintText: 'Mobile',
-                          labelText: 'Mobile',
                         ),
                         validator: (String? value) {
                           if ((value?.isEmpty ?? true) || value!.length < 11) {
@@ -155,7 +207,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         obscureText: true,
                         decoration: const InputDecoration(
                           hintText: 'Password',
-                          labelText: 'Password',
                         ),
                         validator: (String? value) {
                           if ((value?.isEmpty ?? true) || value!.length <= 5) {
@@ -169,21 +220,23 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (!_formKey.currentState!.validate()) {
-                              return;
-                            }
-                            //updateProfile();
-                          },
-                          child: const Text('Update'),
+                        child: Visibility(
+                          visible: _profileUpdateInProgress == false,
+                          replacement:
+                              const Center(child: CircularProgressIndicator()),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              updateProfile();
+                            },
+                            child: const Text('Update'),
+                          ),
                         ),
                       )
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

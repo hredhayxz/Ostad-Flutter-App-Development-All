@@ -6,7 +6,7 @@ import 'package:task_manager/data/utility/urls.dart';
 import 'package:task_manager/ui/screens/update_task_status_sheet.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/task_list_tile.dart';
-import 'package:task_manager/ui/widgets/user_profile_banner.dart';
+import 'package:task_manager/ui/widgets/user_profile_appbar.dart';
 
 class CompletedTaskScreen extends StatefulWidget {
   const CompletedTaskScreen({Key? key}) : super(key: key);
@@ -83,7 +83,7 @@ class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
       body: ScreenBackground(
         child: Column(
           children: [
-            const UserProfileBanner(),
+            const UserProfileAppBar(),
             Expanded(
               child: _completedTasksInProgress
                   ? const Center(

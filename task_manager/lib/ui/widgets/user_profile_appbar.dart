@@ -1,21 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/auth/login_screen.dart';
 import 'package:task_manager/ui/screens/update_profile_screen.dart';
 import 'package:task_manager/ui/utility/auth_utility.dart';
 
-class UserProfileBanner extends StatefulWidget {
+class UserProfileAppBar extends StatefulWidget {
   final bool? isUpdateScreen;
 
-  const UserProfileBanner({
+  const UserProfileAppBar({
     super.key,
     this.isUpdateScreen,
   });
 
   @override
-  State<UserProfileBanner> createState() => _UserProfileBannerState();
+  State<UserProfileAppBar> createState() => _UserProfileAppBarState();
 }
 
-class _UserProfileBannerState extends State<UserProfileBanner> {
+class _UserProfileAppBarState extends State<UserProfileAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -35,15 +36,17 @@ class _UserProfileBannerState extends State<UserProfileBanner> {
               visible: (widget.isUpdateScreen ?? false) == false,
               child: Row(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      AuthUtility.userInfo.data?.photo ?? '',
+                  ClipOval(
+                    child: Container(
+                      color: Colors.white,
+                      child: CachedNetworkImage(
+                        placeholder: (_, __) => Image.asset('assets/images/person.png',width: 30),
+                        imageUrl: AuthUtility.userInfo.data?.photo ?? '',
+                        errorWidget: (_, __, ___) => Image.asset('assets/images/person.png',width: 30),
+                      ),
                     ),
-                    onBackgroundImageError: (_, __) {
-                      const Icon(Icons.image);
-                    },
-                    radius: 15,
                   ),
+
                   const SizedBox(
                     width: 16,
                   ),

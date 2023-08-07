@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/data/models/network_response.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utility/urls.dart';
-import 'package:task_manager/ui/widgets/user_profile_banner.dart';
+import 'package:task_manager/ui/widgets/user_profile_appbar.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({Key? key}) : super(key: key);
@@ -59,7 +59,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const UserProfileBanner(),
+                const UserProfileAppBar(),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(

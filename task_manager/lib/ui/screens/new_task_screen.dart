@@ -9,7 +9,7 @@ import 'package:task_manager/ui/screens/update_task_status_sheet.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/summary_card.dart';
 import 'package:task_manager/ui/widgets/task_list_tile.dart';
-import 'package:task_manager/ui/widgets/user_profile_banner.dart';
+import 'package:task_manager/ui/widgets/user_profile_appbar.dart';
 
 class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({Key? key}) : super(key: key);
@@ -113,7 +113,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       body: ScreenBackground(
         child: Column(
           children: [
-            const UserProfileBanner(),
+            const UserProfileAppBar(),
             _getCountSummaryInProgress
                 ? const LinearProgressIndicator()
                 : Padding(

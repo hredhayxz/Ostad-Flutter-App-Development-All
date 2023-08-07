@@ -16,4 +16,5 @@ class Urls {
 
   static String updateTask(String id, String status) =>
       '$_baseUrl/updateTaskStatus/$id/$status';
+  static String sendOtpToEmail(String email) => '$_baseUrl/RecoverVerifyEmail/$email';
 }

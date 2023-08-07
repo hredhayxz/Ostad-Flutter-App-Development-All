@@ -72,7 +72,7 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
                     },
                     title: Text(taskStatusList[index].toUpperCase()),
                     trailing: _selectedTask == taskStatusList[index]
-                        ? const Icon(Icons.check)
+                        ? const Icon(Icons.check,color: Colors.green,)
                         : null,
                   );
                 }),

@@ -29,14 +29,16 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       setState(() {});
     }
     if (response.isSuccess) {
-      // if (mounted) {
-      //   Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //           builder: (context) => OtpVerificationScreen(
-      //             email: _emailTEController.text.trim(),
-      //           )));
-      // }
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Email verification successful!')));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OtpVerificationScreen(
+                  email: _emailTEController.text.trim(),
+                )));
+      }
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

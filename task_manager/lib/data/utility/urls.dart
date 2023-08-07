@@ -5,6 +5,7 @@ class Urls {
   static String registration = '$_baseUrl/registration';
   static String login = '$_baseUrl/login';
   static String profileUpdate = '$_baseUrl/profileUpdate';
+  static String resetPassword = '$_baseUrl/RecoverResetPass';
   static String createTask = '$_baseUrl/createTask';
   static String taskStatusCount = '$_baseUrl/taskStatusCount';
   static String newTasks = '$_baseUrl/listTaskByStatus/New';
@@ -16,5 +17,10 @@ class Urls {
 
   static String updateTask(String id, String status) =>
       '$_baseUrl/updateTaskStatus/$id/$status';
-  static String sendOtpToEmail(String email) => '$_baseUrl/RecoverVerifyEmail/$email';
+
+  static String sendOtpToEmail(String email) =>
+      '$_baseUrl/RecoverVerifyEmail/$email';
+
+  static String otpVerify(String email, String otp) =>
+      '$_baseUrl/RecoverVerifyOTP/$email/$otp';
 }

@@ -114,7 +114,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           },
                           child: Container(
                             width: double.infinity,
-                            decoration: const BoxDecoration(color: Colors.white),
+                            decoration:
+                                const BoxDecoration(color: Colors.white),
                             child: Row(
                               children: [
                                 Container(
@@ -194,7 +195,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             hintText: 'Mobile',
                           ),
                           validator: (String? value) {
-                            if ((value?.isEmpty ?? true) || value!.length < 11) {
+                            if ((value?.isEmpty ?? true) ||
+                                value!.length < 11) {
                               return 'Enter your valid mobile no';
                             }
                             return null;
@@ -210,7 +212,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             hintText: 'Password',
                           ),
                           validator: (String? value) {
-                            if ((value?.isEmpty ?? true) || value!.length <= 5) {
+                            if ((value?.isEmpty ?? true) ||
+                                value!.length <= 5) {
                               return 'Enter a password more than 6 letters';
                             }
                             return null;
@@ -223,8 +226,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           width: double.infinity,
                           child: Visibility(
                             visible: _profileUpdateInProgress == false,
-                            replacement:
-                                const Center(child: CircularProgressIndicator()),
+                            replacement: const Center(
+                                child: CircularProgressIndicator()),
                             child: ElevatedButton(
                               onPressed: () {
                                 updateProfile();

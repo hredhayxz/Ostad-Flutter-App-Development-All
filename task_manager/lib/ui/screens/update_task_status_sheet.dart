@@ -33,7 +33,7 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
       setState(() {});
     }
     final NetworkResponse response =
-    await NetworkCaller().getRequest(Urls.updateTask(taskId, newStatus));
+        await NetworkCaller().getRequest(Urls.updateTask(taskId, newStatus));
     updateTaskInProgress = false;
     if (mounted) {
       setState(() {});
@@ -42,6 +42,8 @@ class _UpdateTaskStatusSheetState extends State<UpdateTaskStatusSheet> {
       widget.onUpdate();
       if (mounted) {
         Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Update task status successful!')));
       }
     } else {
       if (mounted) {

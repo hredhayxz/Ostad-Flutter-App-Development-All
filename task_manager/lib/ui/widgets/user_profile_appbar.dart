@@ -40,13 +40,14 @@ class _UserProfileAppBarState extends State<UserProfileAppBar> {
                     child: Container(
                       color: Colors.white,
                       child: CachedNetworkImage(
-                        placeholder: (_, __) => Image.asset('assets/images/person.png',width: 30),
+                        placeholder: (_, __) =>
+                            Image.asset('assets/images/person.png', width: 30),
                         imageUrl: AuthUtility.userInfo.data?.photo ?? '',
-                        errorWidget: (_, __, ___) => Image.asset('assets/images/person.png',width: 30),
+                        errorWidget: (_, __, ___) =>
+                            Image.asset('assets/images/person.png', width: 30),
                       ),
                     ),
                   ),
-
                   const SizedBox(
                     width: 16,
                   ),
@@ -77,15 +78,52 @@ class _UserProfileAppBarState extends State<UserProfileAppBar> {
           onPressed: () async {
             await AuthUtility.clearUserInfo();
             if (mounted) {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                      (route) => false);
+              logoutAlertDialogue();
             }
           },
           icon: const Icon(Icons.logout),
         ),
       ],
+    );
+  }
+
+  void logoutAlertDialogue() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text(
+          "Logout Alert",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+            // Set the title text color here
+          ),
+        ),
+        content: const Text(
+          "Are you want to log out?",
+          style: TextStyle(
+            color: Colors.black, // Set the content text color here
+          ),
+        ),
+        backgroundColor: Colors.white,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  (route) => false);
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
     );
   }
 }

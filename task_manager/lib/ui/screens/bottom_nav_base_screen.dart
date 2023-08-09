@@ -28,9 +28,7 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedScreenIndex,
         unselectedItemColor: Colors.grey,
-        unselectedLabelStyle: const TextStyle(
-            color: Colors.grey
-        ),
+        unselectedLabelStyle: const TextStyle(color: Colors.grey),
         showUnselectedLabels: true,
         selectedItemColor: Colors.green,
         onTap: (int index) {
@@ -42,9 +40,12 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.ac_unit), label: 'New'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_tree), label: 'In Progress'),
-          BottomNavigationBarItem(icon: Icon(Icons.cancel_outlined), label: 'Cancel'),
-          BottomNavigationBarItem(icon: Icon(Icons.done_all), label: 'Completed'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_tree), label: 'In Progress'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.cancel_outlined), label: 'Cancel'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.done_all), label: 'Completed'),
         ],
       ),
     );

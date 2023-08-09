@@ -26,7 +26,7 @@ class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
     }
     final NetworkResponse response =
         await NetworkCaller().getRequest(Urls.completedTasks);
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       _taskListModel = TaskListModel.fromJson(response.body!);
     } else {
       if (mounted) {
@@ -51,7 +51,7 @@ class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
   Future<void> deleteTask(String taskId) async {
     final NetworkResponse response =
         await NetworkCaller().getRequest(Urls.deleteTask(taskId));
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       _taskListModel.data!.removeWhere((element) => element.sId == taskId);
       if (mounted) {
         setState(() {

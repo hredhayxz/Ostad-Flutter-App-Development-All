@@ -32,7 +32,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Otp verification success!')));
@@ -40,9 +40,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             context,
             MaterialPageRoute(
                 builder: (context) => ResetPasswordScreen(
-                  email: widget.email,
-                  otp: _otpTEController.text,
-                )));
+                      email: widget.email,
+                      otp: _otpTEController.text,
+                    )));
       }
     } else {
       if (mounted) {
@@ -76,8 +76,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   Text(
                     'A 6 digits pin will sent to your email address',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey,
-                    ),
+                          color: Colors.grey,
+                        ),
                   ),
                   const SizedBox(
                     height: 24,
@@ -126,17 +126,16 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          if(_otpTEController.text.length<6)
-                            {
-                              if (mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Otp verification has been failed!')));
-                              }
+                          if (_otpTEController.text.length < 6) {
+                            if (mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Otp verification has been failed!')));
                             }
-                          else
-                            {
-                              verifyOTP();
-                            }
+                          } else {
+                            verifyOTP();
+                          }
                         },
                         child: const Text('Verify'),
                       ),
@@ -159,7 +158,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const LoginScreen()),
-                                    (route) => false);
+                                (route) => false);
                           },
                           child: const Text('Sign in')),
                     ],

@@ -59,7 +59,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       userData.firstName = _firstNameTEController.text.trim();
       userData.lastName = _lastNameTEController.text.trim();
       userData.mobile = _mobileTEController.text.trim();
@@ -212,7 +212,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             hintText: 'Password',
                           ),
                           validator: (String? value) {
-                            if (value!.isNotEmpty&&value!.length <= 5) {
+                            if (value!.isNotEmpty && value!.length <= 5) {
                               return 'Enter a password more than 6 letters';
                             }
                             return null;

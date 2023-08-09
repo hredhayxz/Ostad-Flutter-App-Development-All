@@ -29,7 +29,8 @@ class UserData {
   String? mobile;
   String? photo;
 
-  UserData({this.email, this.firstName, this.lastName, this.mobile, this.photo});
+  UserData(
+      {this.email, this.firstName, this.lastName, this.mobile, this.photo});
 
   UserData.fromJson(Map<String, dynamic> json) {
     email = json['email'];

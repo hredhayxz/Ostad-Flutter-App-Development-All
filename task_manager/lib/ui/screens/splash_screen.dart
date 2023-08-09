@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -33,11 +32,11 @@ class _SplashScreenState extends State<SplashScreen> {
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) =>
-          isLoggedIn
-              ? const BottomNavBaseScreen()
-              : const LoginScreen()),
-              (route) => false,
+          MaterialPageRoute(
+              builder: (context) => isLoggedIn
+                  ? const BottomNavBaseScreen()
+                  : const LoginScreen()),
+          (route) => false,
         );
       }
     });

@@ -9,7 +9,8 @@ class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+  State<EmailVerificationScreen> createState() =>
+      _EmailVerificationScreenState();
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
@@ -28,16 +29,16 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Email verification successful!')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Email verification successful!')));
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => OtpVerificationScreen(
-                  email: _emailTEController.text.trim(),
-                )));
+                      email: _emailTEController.text.trim(),
+                    )));
       }
     } else {
       if (mounted) {
@@ -46,6 +47,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,19 +59,21 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 64,),
+                  const SizedBox(
+                    height: 64,
+                  ),
                   Text(
                     'Your email address',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 4,),
+                  const SizedBox(
+                    height: 4,
+                  ),
                   Text(
                     'A 6 digits pin will sent to your email address',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: Colors.grey,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.grey,
+                        ),
                   ),
                   const SizedBox(
                     height: 24,
@@ -98,7 +102,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     width: double.infinity,
                     child: Visibility(
                       visible: _emailVerificationInProgress == false,
-                      replacement: const Center(child: CircularProgressIndicator(),),
+                      replacement: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                       child: ElevatedButton(
                         onPressed: () {
                           if (!_formKey.currentState!.validate()) {
@@ -121,9 +127,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.w500, letterSpacing: 0.5),
                       ),
-                      TextButton(onPressed: () {
-                        Navigator.pop(context);
-                      }, child: const Text('Sign in')),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Sign in')),
                     ],
                   )
                 ],

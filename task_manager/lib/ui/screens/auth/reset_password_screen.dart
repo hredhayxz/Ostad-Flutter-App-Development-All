@@ -18,7 +18,7 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
   final TextEditingController _confirmPasswordTEController =
-  TextEditingController();
+      TextEditingController();
   bool _setPasswordInProgress = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -35,19 +35,19 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     };
 
     final NetworkResponse response =
-    await NetworkCaller().postRequest(Urls.resetPassword, requestBody);
+        await NetworkCaller().postRequest(Urls.resetPassword, requestBody);
     _setPasswordInProgress = false;
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Password reset successful!')));
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
-                (route) => false);
+            (route) => false);
       }
     } else {
       if (mounted) {
@@ -83,8 +83,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     Text(
                       'Minimum password should be 8 letters with numbers & symbols',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey,
-                      ),
+                            color: Colors.grey,
+                          ),
                     ),
                     const SizedBox(
                       height: 24,
@@ -158,8 +158,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                      const LoginScreen()),
-                                      (route) => false);
+                                          const LoginScreen()),
+                                  (route) => false);
                             },
                             child: const Text('Sign in')),
                       ],

@@ -34,7 +34,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     if (mounted) {
       setState(() {});
     }
-    if (response.isSuccess && response.statusCode==200) {
+    if (response.isSuccess) {
       _titleTEController.clear();
       _descriptionTEController.clear();
       if (mounted) {

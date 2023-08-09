@@ -39,8 +39,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       setState(() {});
     }
     final NetworkResponse response =
-    await NetworkCaller().getRequest(Urls.taskStatusCount);
-    if (response.isSuccess && response.statusCode==200) {
+        await NetworkCaller().getRequest(Urls.taskStatusCount);
+    if (response.isSuccess) {
       _summaryCountModel = SummaryCountModel.fromJson(response.body!);
     } else {
       if (mounted) {
@@ -60,8 +60,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       setState(() {});
     }
     final NetworkResponse response =
-    await NetworkCaller().getRequest(Urls.newTasks);
-    if (response.isSuccess && response.statusCode==200) {
+        await NetworkCaller().getRequest(Urls.newTasks);
+    if (response.isSuccess) {
       _taskListModel = TaskListModel.fromJson(response.body!);
     } else {
       if (mounted) {
@@ -77,8 +77,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
 
   Future<void> deleteTask(String taskId) async {
     final NetworkResponse response =
-    await NetworkCaller().getRequest(Urls.deleteTask(taskId));
-    if (response.isSuccess && response.statusCode==200) {
+        await NetworkCaller().getRequest(Urls.deleteTask(taskId));
+    if (response.isSuccess && response.statusCode == 200) {
       _taskListModel.data!.removeWhere((element) => element.sId == taskId);
       getCountSummary();
       if (mounted) {
@@ -121,27 +121,28 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
               _getCountSummaryInProgress
                   ? const LinearProgressIndicator()
                   : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 80,
-                  width: double.infinity,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _summaryCountModel.data?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      return SummaryCard(
-                        title: _summaryCountModel.data![index].sId ?? 'New',
-                        number: _summaryCountModel.data![index].sum ?? 0,
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(
-                        height: 4,
-                      );
-                    },
-                  ),
-                ),
-              ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 80,
+                        width: double.infinity,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _summaryCountModel.data?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return SummaryCard(
+                              title:
+                                  _summaryCountModel.data![index].sId ?? 'New',
+                              number: _summaryCountModel.data![index].sum ?? 0,
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const Divider(
+                              height: 4,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
               Expanded(
                 child: RefreshIndicator(
                   onRefresh: () async {
@@ -150,28 +151,28 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                   },
                   child: _getNewTaskInProgress
                       ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                          child: CircularProgressIndicator(),
+                        )
                       : ListView.separated(
-                    itemCount: _taskListModel.data?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      return TaskListTile(
-                        data: _taskListModel.data![index],
-                        onDeleteTap: () {
-                          deleteAlertDialogue(index);
-                          //deleteTask(_taskListModel.data![index].sId!);
-                        },
-                        onEditTap: () {
-                          editAlertDialogue(index);
-                        },
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(
-                        height: 4,
-                      );
-                    },
-                  ),
+                          itemCount: _taskListModel.data?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return TaskListTile(
+                              data: _taskListModel.data![index],
+                              onDeleteTap: () {
+                                deleteAlertDialogue(index);
+                                //deleteTask(_taskListModel.data![index].sId!);
+                              },
+                              onEditTap: () {
+                                editAlertDialogue(index);
+                              },
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const Divider(
+                              height: 4,
+                            );
+                          },
+                        ),
                 ),
               ),
             ],

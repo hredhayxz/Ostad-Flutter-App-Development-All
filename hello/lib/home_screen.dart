@@ -4,14 +4,8 @@ import 'package:hello/carts_screen.dart';
 import 'package:hello/check_out_screen.dart';
 import 'package:hello/counter_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
   final CounterController _counterController = Get.put(CounterController());
 

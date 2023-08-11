@@ -21,7 +21,7 @@ class CheckOutScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Get.off(const HomeScreen());
-                Get.offAll(const HomeScreen());
+                Get.offAll(HomeScreen());
               },
               child: const Text('Home'),
             )

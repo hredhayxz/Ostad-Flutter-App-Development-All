@@ -16,7 +16,7 @@ class CounterScreen extends StatelessWidget {
       body: Center(
         child: GetBuilder<CounterController>(builder: (_) {
           return Text(
-            '${_counterController.count}',
+            '${_.count}',
             style: const TextStyle(fontSize: 24),
           );
         }),

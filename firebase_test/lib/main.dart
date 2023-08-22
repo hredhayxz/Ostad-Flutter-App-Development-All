@@ -1,10 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_test/messaging/firebase_notification_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseNotificationHandler().initialization();
+  FirebaseNotificationHandler().onTokenRefresh();
+  print(await FirebaseNotificationHandler().getToken());
+  await FirebaseNotificationHandler().subscribeToTopic('ostad');
   runApp(const CricketLiveScoreApp());
 }
 

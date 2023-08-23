@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:module_14_assignment/ui/screens/match_list_screen.dart';
 import 'package:module_14_assignment/ui/utility/assets_utils.dart';
 
@@ -18,13 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToMatchListScreen() {
     Future.delayed(const Duration(seconds: 3)).then((_) async {
-      if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) =>  const MatchListScreen()),
-          (route) => false,
-        );
-      }
+      Get.offAll(() => const MatchListScreen());
     });
   }
 

@@ -3,11 +3,14 @@ import 'package:module_14_assignment/ui/utility/assets_utils.dart';
 
 class MatchListTile extends StatelessWidget {
   final String matchName;
-  final bool? isMatchRunning; // Change to bool? here
+  final bool? isMatchRunning;
   final VoidCallback onClick;
 
   const MatchListTile(
-      {Key? key, required this.matchName, this.isMatchRunning, required this.onClick})
+      {Key? key,
+      required this.matchName,
+      this.isMatchRunning,
+      required this.onClick})
       : super(key: key);
 
   @override

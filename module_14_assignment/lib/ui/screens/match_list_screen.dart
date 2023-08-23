@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:module_14_assignment/ui/widgets/match_list_tile.dart';
 import 'match_detail_screen.dart';
 
@@ -29,12 +30,10 @@ class MatchListScreen extends StatelessWidget {
                 matchName: matchData['match_name'],
                 isMatchRunning: matchData['isMatchRunning'],
                 onClick: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => MatchDetailScreen(
-                      matchDocumentId: matches[index].id,
-                      matchName: matchData['match_name'],
-                    ),
-                  ));
+                  Get.to(() => MatchDetailScreen(
+                        matchDocumentId: matches[index].id,
+                        matchName: matchData['match_name'],
+                      ));
                 },
               );
             },

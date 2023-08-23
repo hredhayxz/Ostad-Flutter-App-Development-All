@@ -1,16 +1,3 @@
-# module_14_assignment
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://github.com/hredhayxz/Ostad-Flutter-App-Development-All/assets/60058949/6c47e205-de88-4e1f-85be-1fec748216dd)
+![image](https://github.com/hredhayxz/Ostad-Flutter-App-Development-All/assets/60058949/02fa9991-6cad-4bcc-8328-add1bb3a7bda)
+![image](https://github.com/hredhayxz/Ostad-Flutter-App-Development-All/assets/60058949/6ac8975a-1aa7-4322-b84e-4fff7073584f)

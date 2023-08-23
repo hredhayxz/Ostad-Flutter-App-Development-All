@@ -5,10 +5,13 @@ class LiveScoreApp extends StatelessWidget {
   const LiveScoreApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Live Score App',
-      home: SplashScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const SplashScreen(),
     );
   }
 }

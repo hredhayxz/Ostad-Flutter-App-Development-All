@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const MatchListScreen()),
+          MaterialPageRoute(builder: (context) =>  const MatchListScreen()),
           (route) => false,
         );
       }

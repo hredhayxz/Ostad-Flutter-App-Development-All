@@ -1,125 +1,172 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+/// API keu - AIzaSyB7w8JhkAHJJkhweXYfp7w_28JRYI6o8zg
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
+  late final GoogleMapController _googleMapController;
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('Google map screen'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: GoogleMap(
+        initialCameraPosition: const CameraPosition(
+          zoom: 15,
+          bearing: 30,
+          tilt: 10,
+          target: LatLng(24.250151813382207, 89.92231210838047),
         ),
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        zoomControlsEnabled: true,
+        zoomGesturesEnabled: true,
+        trafficEnabled: false,
+        onMapCreated: (GoogleMapController controller) {
+          print('on map created');
+          _googleMapController = controller;
+        },
+        compassEnabled: true,
+        onTap: (LatLng l) {
+          print(l);
+        },
+        onLongPress: (LatLng l) {
+          print(l);
+        },
+        mapType: MapType.normal,
+        markers: <Marker>{
+          Marker(
+              markerId: MarkerId('custom-marker'),
+              position: LatLng(24.10648361418759, 89.96545615056893),
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+              infoWindow: InfoWindow(title: 'Bazar'),
+              draggable: false,
+              // draggable: true,
+              onDragStart: (LatLng latLng) {
+                print(latLng);
+              },
+              onDragEnd: (LatLng latLng) {
+                print(latLng);
+              }
+          ),
+          Marker(
+              markerId: MarkerId('custom-marker-1'),
+              position: LatLng(24.109068980277137, 89.97399630377993),
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+              infoWindow: InfoWindow(title: 'Bazar'),
+              draggable: false,
+              // draggable: true,
+              onDragStart: (LatLng latLng) {
+                print(latLng);
+              },
+              onDragEnd: (LatLng latLng) {
+                print(latLng);
+              }
+          ),
+          Marker(
+              markerId: MarkerId('custom-marker-2'),
+              position: LatLng(24.10152818327614, 89.96747317167907),
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+              infoWindow: InfoWindow(title: 'Bazar'),
+              draggable: false,
+              // draggable: true,
+              onDragStart: (LatLng latLng) {
+                print(latLng);
+              },
+              onDragEnd: (LatLng latLng) {
+                print(latLng);
+              }
+          ),
+        },
+        polylines: <Polyline> {
+          Polyline(polylineId: PolylineId('polyline'),
+              color: Colors.pink,
+              width: 20,
+              jointType: JointType.round,
+              onTap: (){
+                print('Tapped on polyline');
+              },
+              points: [
+                LatLng(24.10648361418759, 89.96545615056893),
+                LatLng(24.109068980277137, 89.97399630377993),
+                LatLng(24.10152818327614, 89.96747317167907),
+              ]),
+        },
+        circles: <Circle> {
+          Circle(
+              circleId: CircleId('demo'),
+              center: LatLng(24.10648361418759, 89.96545615056893),
+              radius: 500,
+              strokeColor: Colors.purple,
+              strokeWidth: 4,
+              fillColor: Colors.purple.shade100,
+              onTap: () {
+                print('Tapped on circle');
+              }
+          ),
+          Circle(
+              circleId: CircleId('demo-1'),
+              center:  LatLng(24.109068980277137, 89.97399630377993),
+              radius: 500,
+              strokeColor: Colors.deepOrange,
+              strokeWidth: 4,
+              fillColor: Colors.deepOrange.shade100,
+              onTap: () {
+                print('Tapped on circle');
+              }
+          ),
+          Circle(
+              circleId: CircleId('demo-3'),
+              center: LatLng(24.10152818327614, 89.96747317167907),
+              radius: 500,
+              strokeColor: Colors.blue,
+              strokeWidth: 4,
+              fillColor: Colors.blue.shade100,
+              onTap: () {
+                print('Tapped on circle');
+              }
+          ),
+        },
+        polygons: <Polygon> {
+          Polygon(polygonId: PolygonId('poly-id'),
+              fillColor: Colors.purple.shade400,
+              strokeWidth: 0,
+              onTap: () {
+              },
+              points: [
+                LatLng(24.094457058310464, 89.97290196279874),
+                LatLng(24.088521713190666, 89.97790160028127),
+                LatLng(24.0858575745658, 89.98912396241529),
+                LatLng(24.0796279753388, 89.98309435685475),
+                LatLng(24.066861184161237, 89.9845824598033),
+                LatLng(24.064235780991748, 89.97503379603725),
+              ]
+          )
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

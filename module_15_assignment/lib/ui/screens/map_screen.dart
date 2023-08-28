@@ -16,25 +16,26 @@ class _MapScreenState extends State<MapScreen> {
   final List<LatLng> _polylineCoordinates = [];
   final Set<Polyline> _polyLines = {};
   Marker _marker = const Marker(markerId: MarkerId('current_location'));
-  bool isStart = false;
+  bool isDrawingPermission = false;
 
   @override
   void initState() {
     super.initState();
-    getLocation();
+    _getLocation();
   }
-  void getLocation() {
+
+  void _getLocation() {
     _location.onLocationChanged.listen((LocationData newLocation) {
-      setState(() {
-        _currentLocation = LatLng(newLocation.latitude!, newLocation.longitude!);
-        if(isStart) {
-          _updatePolyline();
-        }
-        _updateMarker();
-      });
+      _currentLocation = LatLng(newLocation.latitude!, newLocation.longitude!);
+      if (isDrawingPermission) {
+        _updatePolyline();
+      }
+      _updateMarker();
+      setState(() {});
     });
     _startLocationUpdates();
   }
+
   void _startLocationUpdates() async {
     if (await _location.serviceEnabled()) {
       _location.changeSettings(interval: 10000);
@@ -98,20 +99,16 @@ class _MapScreenState extends State<MapScreen> {
         children: [
           FloatingActionButton(
             onPressed: () {
-              isStart = true;
-              setState(() {
-
-              });
+              isDrawingPermission = true;
+              setState(() {});
             },
             child: const Text("Draw"),
           ),
           const SizedBox(width: 16),
           FloatingActionButton(
             onPressed: () {
-              isStart = false;
-              setState(() {
-
-              });
+              isDrawingPermission = false;
+              setState(() {});
             },
             child: const Text("Cancel"),
           ),

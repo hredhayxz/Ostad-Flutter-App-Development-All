@@ -1,7 +1,6 @@
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/home_screen.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_path.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -32,10 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           const Spacer(),
           Center(
-              child: SvgPicture.asset(
-                AssetsPath.craftyBayLogoSVG,
-                width: 100,
-              )),
+              child: CtaftyBayLogo()),
           const Spacer(),
           const CircularProgressIndicator(),
           const SizedBox(

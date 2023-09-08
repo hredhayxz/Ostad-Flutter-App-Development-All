@@ -1,3 +1,4 @@
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/home_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
@@ -19,26 +20,27 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void goToNextScreen() {
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.offAll(const HomeScreen());
+      Get.offAll(const EmailVerificationScreen());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Spacer(),
+          Spacer(),
           Center(
-              child: CtaftyBayLogo()),
-          const Spacer(),
-          const CircularProgressIndicator(),
-          const SizedBox(
+            child: CraftyBayLogo(),
+          ),
+          Spacer(),
+          CircularProgressIndicator(),
+          SizedBox(
             height: 16,
           ),
-          const Text('Version 1.0.0'),
-          const SizedBox(
+          Text('Version 1.0.0'),
+          SizedBox(
             height: 16,
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:craftybay_ecommerce_application/application/dependency_manager.dart';
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class CraftyBay extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
+      initialBinding: ControllerBinding(),
       theme: ThemeData(
           primarySwatch:
               MaterialColor(AppColors.primaryColor.value, AppColors().color),

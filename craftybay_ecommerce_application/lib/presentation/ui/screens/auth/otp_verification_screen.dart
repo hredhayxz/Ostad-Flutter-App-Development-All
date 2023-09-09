@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/otp_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
@@ -15,21 +14,13 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
-  int _seconds = 10;
-  late Timer _timer;
+  final OtpVerificationScreenController _otpVerificationScreenController =
+      Get.find<OtpVerificationScreenController>();
 
   @override
   void initState() {
     super.initState();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    const oneSecond = Duration(seconds: 1);
-    _timer = Timer.periodic(oneSecond, (timer) {
-      _seconds == 0 ? _timer.cancel() : _seconds--;
-      setState(() {});
-    });
+    _otpVerificationScreenController.startTimer();
   }
 
   @override
@@ -109,37 +100,47 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(color: Colors.grey),
+                GetBuilder<OtpVerificationScreenController>(
+                    builder: (otpVerificationScreenController) {
+                  return Column(
                     children: [
-                      const TextSpan(text: 'This code will expire in '),
-                      TextSpan(
-                        text: '$_seconds' 's',
-                        style: TextStyle(
-                          color: _seconds == 0
-                              ? Colors.grey
-                              : AppColors.primaryColor,
-                          fontWeight: FontWeight.bold,
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(color: Colors.grey),
+                          children: [
+                            const TextSpan(text: 'This code will expire in '),
+                            TextSpan(
+                              text: '${otpVerificationScreenController.seconds}'
+                                  's',
+                              style: TextStyle(
+                                color:
+                                    otpVerificationScreenController.seconds == 0
+                                        ? Colors.grey
+                                        : AppColors.primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      TextButton(
+                        onPressed: () {
+                          if (_otpVerificationScreenController.seconds == 0) {
+                            _otpVerificationScreenController.seconds = 10;
+                            _otpVerificationScreenController.startTimer();
+                          }
+                        },
+                        style: TextButton.styleFrom(
+                          foregroundColor:
+                              _otpVerificationScreenController.seconds == 0
+                                  ? AppColors.primaryColor
+                                  : Colors.grey,
+                        ),
+                        child: const Text('Resend Code'),
+                      ),
                     ],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if(_seconds == 0)
-                      {
-                        _seconds = 10;
-                        _startTimer();
-                      }
-                  },
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        _seconds == 0 ? AppColors.primaryColor : Colors.grey,
-                  ),
-                  child: const Text('Resend Code'),
-                ),
+                  );
+                }),
               ],
             ),
           ),

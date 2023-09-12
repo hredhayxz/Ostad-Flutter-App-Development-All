@@ -1,3 +1,4 @@
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_path.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
@@ -69,7 +70,7 @@ class HomeScreen extends StatelessWidget {
               SectionHeader(
                 title: 'Categories',
                 onTap: () {
-                  //Get.to(const CategoryListScreen());
+                  Get.to(() => const CategoryListScreen());
                 },
               ),
               const SizedBox(

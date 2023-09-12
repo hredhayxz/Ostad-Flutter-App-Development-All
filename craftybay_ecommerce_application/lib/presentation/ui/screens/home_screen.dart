@@ -2,9 +2,11 @@ import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_p
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -66,7 +68,9 @@ class HomeScreen extends StatelessWidget {
               HomeSlider(),
               SectionHeader(
                 title: 'Categories',
-                onTap: () {},
+                onTap: () {
+                  //Get.to(const CategoryListScreen());
+                },
               ),
               const SizedBox(
                 height: 8,
@@ -87,6 +91,50 @@ class HomeScreen extends StatelessWidget {
                 title: 'Popular',
                 onTap: () {},
               ),
+              SizedBox(
+                height: 165,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return const ProductCard();
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SectionHeader(
+                title: 'Special',
+                onTap: () {},
+              ),
+              SizedBox(
+                height: 165,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return const ProductCard();
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SectionHeader(
+                title: 'New',
+                onTap: () {},
+              ),
+              SizedBox(
+                height: 165,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return const ProductCard();
+                  },
+                ),
+              )
             ],
           ),
         ),

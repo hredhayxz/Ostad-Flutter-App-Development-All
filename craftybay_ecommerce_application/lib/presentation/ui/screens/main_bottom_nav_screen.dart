@@ -1,5 +1,6 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/home_screen.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   final List<Widget> _screens = const [
     HomeScreen(),
     Placeholder(),
-    HomeScreen(),
+    WishListScreen(),
     HomeScreen(),
   ];
 
@@ -47,14 +48,14 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
               label: 'Categories'),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.shopping_cart,
-              ),
-              label: 'Cart'),
-          BottomNavigationBarItem(
-              icon: Icon(
                 Icons.favorite_border,
               ),
               label: 'Wishlist'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              label: 'Cart'),
         ],
       ),
     );

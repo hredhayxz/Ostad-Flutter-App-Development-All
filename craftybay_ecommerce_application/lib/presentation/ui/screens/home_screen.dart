@@ -1,4 +1,5 @@
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_list_screen.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/show_products_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_path.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
@@ -82,7 +83,12 @@ class HomeScreen extends StatelessWidget {
                     itemCount: 10,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return const CategoryCard();
+                      return GestureDetector(
+                        onTap: () {
+                          Get.to(() => const ShowProductsScreen());
+                        },
+                        child: const CategoryCard(),
+                      );
                     }),
               ),
               const SizedBox(

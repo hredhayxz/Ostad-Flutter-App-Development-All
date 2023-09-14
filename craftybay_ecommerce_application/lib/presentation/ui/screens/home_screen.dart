@@ -1,5 +1,6 @@
+import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_list_screen.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/screens/show_products_screen.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_path.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
@@ -71,7 +72,7 @@ class HomeScreen extends StatelessWidget {
               SectionHeader(
                 title: 'Categories',
                 onTap: () {
-                  Get.to(() => const CategoryListScreen());
+                  Get.find<MainBottomNavScreenController>().changeScreen(1);
                 },
               ),
               const SizedBox(
@@ -85,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(() => const ShowProductsScreen());
+                          Get.to(() => const ProductListScreen());
                         },
                         child: const CategoryCard(),
                       );

@@ -2,8 +2,8 @@ import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/reusable_appbar.dart';
 import 'package:flutter/material.dart';
 
-class ShowProductsScreen extends StatelessWidget {
-  const ShowProductsScreen({super.key});
+class ProductListScreen extends StatelessWidget {
+  const ProductListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,7 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_review_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductRatingReviewWishList extends StatelessWidget {
   const ProductRatingReviewWishList({
@@ -29,7 +31,9 @@ class ProductRatingReviewWishList extends StatelessWidget {
           ],
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => const ProductReviewScreen());
+          },
           child: Text(
             'Reviews',
             style: TextStyle(

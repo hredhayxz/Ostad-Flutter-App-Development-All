@@ -18,7 +18,7 @@ class WishListScreen extends StatelessWidget {
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: CustomAppBar(
-            title: 'WishList',
+            title: 'WishList', elevation: 1,
           ),
         ),
         body: Padding(

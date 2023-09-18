@@ -19,7 +19,7 @@ class CategoryListScreen extends StatelessWidget {
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: CustomAppBar(
-            title: 'Categories',
+            title: 'Categories', elevation: 1,
           ),
         ),
         body: Padding(

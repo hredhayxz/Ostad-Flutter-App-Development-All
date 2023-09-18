@@ -12,7 +12,10 @@ class SectionTitle extends StatelessWidget {
     return Row(
       children: [
         if (icon != null)
-          Icon(icon),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Icon(icon),
+          ),
         Text(
           title,
           style: const TextStyle(

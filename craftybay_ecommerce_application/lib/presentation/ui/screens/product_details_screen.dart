@@ -21,7 +21,7 @@ class ProductDetailsScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   ProductImageSlider(),
-                  const CustomAppBar(title: 'Product Details'),
+                  const CustomAppBar(title: 'Product Details', elevation: 0,),
                 ],
               ),
             ),

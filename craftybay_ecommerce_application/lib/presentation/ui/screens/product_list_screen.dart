@@ -13,7 +13,7 @@ class ProductListScreen extends StatelessWidget {
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(
-          title: 'Electronics',
+          title: 'Electronics', elevation: 1,
         ),
       ),
       body: Padding(

@@ -1,14 +1,11 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_path.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_card.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home_screen_appbar_title.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_listview.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,32 +17,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Row(
-          children: [
-            SvgPicture.asset(
-              AssetsPath.craftyBayNavLogoSVG,
-            ),
-            const Spacer(),
-            CircularIconButton(
-              icon: Icons.person,
-              onTap: () {},
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            CircularIconButton(
-              icon: Icons.call,
-              onTap: () {},
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            CircularIconButton(
-              icon: Icons.notifications_none,
-              onTap: () {},
-            ),
-          ],
-        ),
+        title: const HomeScreenAppbarTitle(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -97,35 +69,21 @@ class HomeScreen extends StatelessWidget {
               ),
               SectionHeader(
                 title: 'Popular',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const ProductListScreen());
+                },
               ),
-              SizedBox(
-                height: 165,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return const ProductCard();
-                  },
-                ),
-              ),
+              const ProductListView(),
               const SizedBox(
                 height: 16,
               ),
               SectionHeader(
                 title: 'Special',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const ProductListScreen());
+                },
               ),
-              SizedBox(
-                height: 165,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return const ProductCard();
-                  },
-                ),
-              ),
+              const ProductListView(),
               const SizedBox(
                 height: 16,
               ),
@@ -133,16 +91,7 @@ class HomeScreen extends StatelessWidget {
                 title: 'New',
                 onTap: () {},
               ),
-              SizedBox(
-                height: 165,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return const ProductCard();
-                  },
-                ),
-              )
+              const ProductListView(),
             ],
           ),
         ),

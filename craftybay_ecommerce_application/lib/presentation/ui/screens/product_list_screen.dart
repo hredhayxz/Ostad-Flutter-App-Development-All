@@ -1,6 +1,8 @@
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_details_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_card.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/reusable_appbar.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductListScreen extends StatelessWidget {
   const ProductListScreen({super.key});
@@ -10,7 +12,7 @@ class ProductListScreen extends StatelessWidget {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: ReusableAppBar(
+        child: CustomAppBar(
           title: 'Electronics',
         ),
       ),
@@ -24,7 +26,9 @@ class ProductListScreen extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const ProductDetailsScreen());
+              },
               child: const FittedBox(
                 child: ProductCard(),
               ),

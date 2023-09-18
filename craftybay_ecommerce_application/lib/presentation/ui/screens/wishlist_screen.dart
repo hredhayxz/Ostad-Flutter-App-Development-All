@@ -1,6 +1,6 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_card.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/reusable_appbar.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class WishListScreen extends StatelessWidget {
       child: Scaffold(
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
-          child: ReusableAppBar(
+          child: CustomAppBar(
             title: 'WishList',
           ),
         ),

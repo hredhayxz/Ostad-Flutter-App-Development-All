@@ -50,7 +50,7 @@ class HomeSlider extends StatelessWidget {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(10),
-                    color: value == i ? AppColors.primaryColor : null),
+                    color: value == i ? AppColors.primaryColor : Colors.white),
               ));
             }
             return Row(

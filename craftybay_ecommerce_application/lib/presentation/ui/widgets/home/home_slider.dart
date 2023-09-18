@@ -13,9 +13,10 @@ class HomeSlider extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-              height: 180.0,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 5),
+              height: 320.0,
+              autoPlay: false,
+              autoPlayInterval: const Duration(seconds: 3),
+              viewportFraction: 1,
               onPageChanged: (int page, _) {
                 _selectedSlider.value = page;
               }),
@@ -24,11 +25,10 @@ class HomeSlider extends StatelessWidget {
               builder: (BuildContext context) {
                 return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                    decoration: const BoxDecoration(color: Colors.amber),
+                    decoration: BoxDecoration(color: Colors.grey.shade400),
                     alignment: Alignment.center,
                     child: Text(
-                      'text $i',
+                      'image $i',
                       style: const TextStyle(fontSize: 16.0),
                     ));
               },

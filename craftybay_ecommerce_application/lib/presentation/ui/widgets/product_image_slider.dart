@@ -14,8 +14,8 @@ class ProductImageSlider extends StatelessWidget {
         CarouselSlider(
           options: CarouselOptions(
               height: 320.0,
-              autoPlay: false,
-              autoPlayInterval: const Duration(seconds: 3),
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 5),
               viewportFraction: 1,
               onPageChanged: (int page, _) {
                 _selectedSlider.value = page;
@@ -42,21 +42,21 @@ class ProductImageSlider extends StatelessWidget {
           child: ValueListenableBuilder(
             valueListenable: _selectedSlider,
             builder: (context, value, _) {
-              List<Widget> list = [];
+              List<Widget> dottedList = [];
               for (int i = 0; i < 5; i++) {
-                list.add(Container(
-                  width: 12,
-                  height: 12,
+                dottedList.add(Container(
+                  width: 10,
+                  height: 10,
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: value == i ? AppColors.primaryColor : Colors.white,
-                  ),
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                      color: value == i ? AppColors.primaryColor : Colors.white),
                 ));
               }
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: list,
+                children: dottedList,
               );
             },
           ),

@@ -1,11 +1,11 @@
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/custom_appbar.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_image_slider.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_name_with_stepper.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_rating_review_wishlist.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/product_image_slider.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/product_name_with_stepper.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/product_rating_review_wishlist.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/select_product_color.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_title.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/select_product_color.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/select_product_size.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/show_price_and_add_to_cart.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/select_product_size.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/bottom_nav_card.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -31,19 +31,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProductNameWithStepper(
-                      productName: 'Addidas Shoe HK23454 - Black Edition',
-                    ),
+                    ProductNameWithStepper(),
                     ProductRatingReviewWishList(),
-                    SectionTitle(title: 'Color'),
-                    SizedBox(
-                      height: 16,
-                    ),
                     SelectProductColor(),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    SectionTitle(title: 'Size'),
                     SizedBox(
                       height: 16,
                     ),
@@ -62,7 +52,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const ShowPriceAndAddToCart(
+            const BottomNavCard(
               price: '\$1000',
             ),
           ],

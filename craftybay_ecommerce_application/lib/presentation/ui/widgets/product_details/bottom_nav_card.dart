@@ -1,8 +1,8 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ShowPriceAndAddToCart extends StatelessWidget {
-  const ShowPriceAndAddToCart({
+class BottomNavCard extends StatelessWidget {
+  const BottomNavCard({
     super.key, required this.price,
   });
   final String price;

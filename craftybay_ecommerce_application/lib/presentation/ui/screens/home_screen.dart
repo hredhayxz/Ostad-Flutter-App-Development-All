@@ -2,7 +2,7 @@ import 'package:craftybay_ecommerce_application/presentation/state_holders/main_
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home_screen_appbar_title.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_screen_appbar_title.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_listview.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_header.dart';
 import 'package:flutter/material.dart';

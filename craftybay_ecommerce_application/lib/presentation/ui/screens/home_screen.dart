@@ -4,7 +4,7 @@ import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_screen_appbar_title.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_listview.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_header.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

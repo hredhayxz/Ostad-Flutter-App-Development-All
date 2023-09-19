@@ -14,13 +14,21 @@ class SectionTitle extends StatelessWidget {
         if (icon != null)
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Icon(icon),
+            child: CircleAvatar(
+              radius: 14,
+              backgroundColor: Colors.grey.shade200,
+              child: Icon(
+                icon,
+                color: Colors.grey,
+                size: 20,
+              ),
+            ),
           ),
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
               fontSize: 16,
-              color: Colors.black,
+              color: Colors.black.withOpacity(0.7),
               fontWeight: FontWeight.w700),
         ),
       ],

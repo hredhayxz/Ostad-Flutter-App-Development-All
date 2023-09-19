@@ -21,7 +21,7 @@ class ReviewCard extends StatelessWidget {
             children: [
               SectionTitle(
                 title: 'Md Alhaz Mondal Hredhay',
-                icon: Icons.account_circle_outlined,
+                icon: Icons.person,
               ),
               SizedBox(
                 height: 10,

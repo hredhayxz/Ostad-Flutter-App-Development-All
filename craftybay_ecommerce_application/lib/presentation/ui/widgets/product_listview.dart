@@ -16,7 +16,7 @@ class ProductListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.to(() => const ProductDetailsScreen());
+              Get.to(() => ProductDetailsScreen());
             },
             child: const ProductCard(),
           );

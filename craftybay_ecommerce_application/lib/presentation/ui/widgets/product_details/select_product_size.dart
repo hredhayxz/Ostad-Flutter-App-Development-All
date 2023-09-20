@@ -3,17 +3,23 @@ import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_
 import 'package:flutter/material.dart';
 
 class SelectProductSize extends StatefulWidget {
-  const SelectProductSize({super.key});
+  const SelectProductSize({super.key, required this.sizes, required this.onSelected, required this.initialSelected});
+  final List<String> sizes;
+  final Function(int selectIndex) onSelected;
+  final int initialSelected;
 
   @override
   State<SelectProductSize> createState() => _SelectProductSizeState();
 }
 
 class _SelectProductSizeState extends State<SelectProductSize> {
-  List<String> sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
-
   int _selectedSizeIndex = 0;
 
+  @override
+  void initState() {
+    _selectedSizeIndex = widget.initialSelected;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,12 +32,13 @@ class _SelectProductSizeState extends State<SelectProductSize> {
           height: 28,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: sizes.length,
+            itemCount: widget.sizes.length,
             itemBuilder: (context, index) {
               return InkWell(
                 borderRadius: BorderRadius.circular(4),
                 onTap: () {
                   _selectedSizeIndex = index;
+                  widget.onSelected(index);
                   if (mounted) {
                     setState(() {});
                   }
@@ -46,7 +53,7 @@ class _SelectProductSizeState extends State<SelectProductSize> {
                           ? AppColors.primaryColor
                           : null),
                   alignment: Alignment.center,
-                  child: Text(sizes[index]),
+                  child: Text(widget.sizes[index]),
                 ),
               );
             },

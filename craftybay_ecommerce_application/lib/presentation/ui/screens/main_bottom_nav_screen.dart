@@ -1,5 +1,6 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/cart_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/home_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/wishlist_screen.dart';
@@ -18,7 +19,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     HomeScreen(),
     CategoryListScreen(),
     WishListScreen(),
-    HomeScreen(),
+    CartScreen(),
   ];
 
   @override

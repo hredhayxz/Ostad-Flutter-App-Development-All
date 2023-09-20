@@ -49,13 +49,18 @@ class ProductDetailsScreen extends StatelessWidget {
                   children: [
                     const ProductNameWithStepper(),
                     const ProductRatingReviewWishList(),
-                    const SelectProductColor(),
+                    SelectProductColor(
+                        colors: colors,
+                        onSelected: (int selectedColor) {
+                          _selectedColorIndex = selectedColor;
+                        },
+                        initialSelected: 0),
                     const SizedBox(
                       height: 16,
                     ),
                     SelectProductSize(
                         sizes: sizes,
-                        onSelected: (int selectedSize){
+                        onSelected: (int selectedSize) {
                           _selectedSizeIndex = selectedSize;
                         },
                         initialSelected: 0),

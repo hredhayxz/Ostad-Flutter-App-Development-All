@@ -3,7 +3,12 @@ import 'package:craftybay_ecommerce_application/presentation/ui/widgets/section_
 import 'package:flutter/material.dart';
 
 class SelectProductSize extends StatefulWidget {
-  const SelectProductSize({super.key, required this.sizes, required this.onSelected, required this.initialSelected});
+  const SelectProductSize(
+      {super.key,
+      required this.sizes,
+      required this.onSelected,
+      required this.initialSelected});
+
   final List<String> sizes;
   final Function(int selectIndex) onSelected;
   final int initialSelected;
@@ -20,6 +25,7 @@ class _SelectProductSizeState extends State<SelectProductSize> {
     _selectedSizeIndex = widget.initialSelected;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,8 +50,7 @@ class _SelectProductSizeState extends State<SelectProductSize> {
                   }
                 },
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(4),
@@ -57,8 +62,7 @@ class _SelectProductSizeState extends State<SelectProductSize> {
                 ),
               );
             },
-            separatorBuilder:
-                (BuildContext context, int index) {
+            separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(
                 width: 8,
               );

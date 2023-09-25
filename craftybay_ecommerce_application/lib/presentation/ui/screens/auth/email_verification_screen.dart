@@ -1,8 +1,8 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/email_verification_screen_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/otp_verification_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'otp_verification_screen.dart';
 
 class EmailVerificationScreen extends StatelessWidget {
   EmailVerificationScreen({Key? key}) : super(key: key);

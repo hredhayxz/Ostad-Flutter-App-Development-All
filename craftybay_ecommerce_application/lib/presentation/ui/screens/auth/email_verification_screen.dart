@@ -1,13 +1,14 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/email_verification_screen_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/otp_verification_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'otp_verification_screen.dart';
 
 class EmailVerificationScreen extends StatelessWidget {
-  EmailVerificationScreen({super.key});
+  EmailVerificationScreen({Key? key}) : super(key: key);
 
   final TextEditingController _emailTEController = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -30,7 +31,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  'Welcome Back',
+                  'Welcome back',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontSize: 24,
                       ),
@@ -38,7 +39,7 @@ class EmailVerificationScreen extends StatelessWidget {
                 const SizedBox(
                   height: 4,
                 ),
-                Text('Please Enter Your Email Address',
+                Text('Please enter your email address',
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium
@@ -47,12 +48,13 @@ class EmailVerificationScreen extends StatelessWidget {
                   height: 24,
                 ),
                 TextFormField(
+                  controller: _emailTEController,
                   decoration: const InputDecoration(
                       hintText: 'Email', labelText: 'Email'),
-                  validator: (String? value) {
-                    if (value?.isEmpty ?? true) {
+                  validator: (String? text) {
+                    if (text?.isEmpty ?? true) {
                       return 'Enter your email address';
-                    } else if (value!.isEmail == false) {
+                    } else if (text!.isEmail == false) {
                       /// REGEX (Email validator)
                       return 'Enter a valid email address';
                     }

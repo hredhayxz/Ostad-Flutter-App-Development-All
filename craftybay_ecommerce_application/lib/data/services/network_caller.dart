@@ -1,13 +1,16 @@
-import 'dart:convert';
 import 'dart:developer';
+import 'dart:convert';
 import 'package:craftybay_ecommerce_application/data/models/network_response.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {
+  /// get request method
   Future<NetworkResponse> getRequest(String url) async {
     try {
-      Response response = await get(Uri.parse(url),
-        /*headers: {'token': AuthUtility.userInfo.token.toString()}*/);
+      Response response = await get(
+        Uri.parse(
+            url), /*headers: {'token': AuthUtility.userInfo.token.toString()}*/
+      );
       log(response.statusCode.toString());
       log(response.body);
       if (response.statusCode == 200 &&
@@ -25,6 +28,7 @@ class NetworkCaller {
     return NetworkResponse(false, -1, null);
   }
 
+  /// post request method
   Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body,
       {bool isLogin = false}) async {
     try {

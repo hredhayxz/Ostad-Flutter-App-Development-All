@@ -1,3 +1,4 @@
+import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
@@ -40,7 +41,21 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              HomeSlider(),
+              GetBuilder<HomeSlidersController>(
+                  builder: (homeSliderController) {
+                    if (homeSliderController.getHomeSlidersInProgress) {
+                      return const SizedBox(
+                        height: 180.0,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                    return HomeSlider(
+                      sliders: homeSliderController.sliderModel.data ?? [],
+                    );
+                  }
+              ),
               SectionHeader(
                 title: 'Categories',
                 onTap: () {

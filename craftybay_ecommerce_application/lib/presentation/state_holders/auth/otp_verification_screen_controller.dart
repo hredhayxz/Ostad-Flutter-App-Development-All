@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:craftybay_ecommerce_application/data/models/network_response.dart';
 import 'package:craftybay_ecommerce_application/data/services/network_caller.dart';
 import 'package:craftybay_ecommerce_application/data/utility/urls.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/auth_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/auth_controller.dart';
 import 'package:get/get.dart';
 
 class OtpVerificationScreenController extends GetxController

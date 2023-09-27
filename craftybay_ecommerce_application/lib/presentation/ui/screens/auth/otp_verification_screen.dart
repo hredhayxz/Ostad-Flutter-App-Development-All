@@ -1,4 +1,5 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/email_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/otp_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/main_bottom_nav_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
@@ -15,8 +16,10 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+  final EmailVerificationScreenController _emailVerificationScreenController =
+      Get.find<EmailVerificationScreenController>();
   final OtpVerificationScreenController _otpVerificationScreenController =
-      Get.find<OtpVerificationScreenController>();
+  Get.find<OtpVerificationScreenController>();
   final TextEditingController _otpTEController = TextEditingController();
 
   @override
@@ -137,8 +140,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       TextButton(
                         onPressed: () {
                           if (_otpVerificationScreenController.seconds == 0) {
-                            _otpVerificationScreenController.seconds = 10;
+                            _emailVerificationScreenController.verifyEmail(widget.email);
+                            _otpVerificationScreenController.seconds = 120;
                             _otpVerificationScreenController.startTimer();
+
                           }
                         },
                         style: TextButton.styleFrom(

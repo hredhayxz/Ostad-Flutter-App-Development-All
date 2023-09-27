@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class OtpVerificationScreenController extends GetxController
 {
-  int seconds = 10;
+  int seconds = 120;
   late Timer _timer;
   void startTimer() {
     const oneSecond = Duration(seconds: 1);

@@ -1,6 +1,7 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/popular_product_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
@@ -81,9 +82,12 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.to(() => const ProductListScreen());
+                            //Get.to(() => const ProductListScreen());
                           },
-                          child: CategoryCard(categoryData: categoryController.categoryModel.data![index],),
+                          child: CategoryCard(
+                            categoryData:
+                                categoryController.categoryModel.data![index],
+                          ),
                         );
                       });
                 }),
@@ -94,20 +98,31 @@ class HomeScreen extends StatelessWidget {
               SectionHeader(
                 title: 'Popular',
                 onTap: () {
-                  Get.to(() => const ProductListScreen());
+                  Get.to(() => ProductListScreen(productData: Get.find<PopularProductController>().popularProductModel.data??[], remarkName: 'Popular''',));
                 },
               ),
-              const ProductListView(),
+              GetBuilder<PopularProductController>(
+                  builder: (popularProductController) {
+                if (popularProductController.getPopularProductsInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ProductListView(
+                    productData:
+                        popularProductController.popularProductModel.data ??
+                            []);
+              }),
               const SizedBox(
                 height: 16,
               ),
               SectionHeader(
                 title: 'Special',
                 onTap: () {
-                  Get.to(() => const ProductListScreen());
+                  //Get.to(() => const ProductListScreen());
                 },
               ),
-              const ProductListView(),
+              //const ProductListView(),
               const SizedBox(
                 height: 16,
               ),
@@ -115,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                 title: 'New',
                 onTap: () {},
               ),
-              const ProductListView(),
+              //const ProductListView(),
             ],
           ),
         ),

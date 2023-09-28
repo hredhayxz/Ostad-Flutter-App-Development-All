@@ -42,7 +42,7 @@ class CategoryListScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Get.to(() => const ProductListScreen());
+                    //Get.to(() => const ProductListScreen());
                   },
                   child: FittedBox(
                     child: CategoryCard(

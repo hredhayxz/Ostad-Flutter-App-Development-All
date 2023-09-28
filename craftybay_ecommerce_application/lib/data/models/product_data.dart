@@ -1,5 +1,3 @@
-import 'package:craftybay_ecommerce_application/data/models/popular_product_model.dart';
-
 class ProductData {
   int? id;
   String? title;
@@ -15,8 +13,8 @@ class ProductData {
   int? brandId;
   String? createdAt;
   String? updatedAt;
-  Brand? brand;
-  Category? category;
+  Null? brand;
+  Null? category;
 
   ProductData(
       {this.id,
@@ -51,10 +49,8 @@ class ProductData {
     brandId = json['brand_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
-    category = json['category'] != null
-        ? Category.fromJson(json['category'])
-        : null;
+    brand = json['brand'];
+    category = json['category'];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,12 +69,8 @@ class ProductData {
     data['brand_id'] = brandId;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
-    if (brand != null) {
-      data['brand'] = brand!.toJson();
-    }
-    if (category != null) {
-      data['category'] = category!.toJson();
-    }
+    data['brand'] = brand;
+    data['category'] = category;
     return data;
   }
 }

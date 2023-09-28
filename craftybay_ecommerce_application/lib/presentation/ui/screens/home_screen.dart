@@ -1,3 +1,4 @@
+import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
@@ -43,21 +44,20 @@ class HomeScreen extends StatelessWidget {
               ),
               GetBuilder<HomeSlidersController>(
                   builder: (homeSliderController) {
-                    if (homeSliderController.getHomeSlidersInProgress) {
-                      return const SizedBox(
-                        height: 180.0,
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
-                    return HomeSlider(
-                      sliders: homeSliderController.sliderModel.data ?? [],
-                    );
-                  }
-              ),
+                if (homeSliderController.getHomeSlidersInProgress) {
+                  return const SizedBox(
+                    height: 180.0,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+                return HomeSlider(
+                  sliders: homeSliderController.sliderModel.data ?? [],
+                );
+              }),
               SectionHeader(
-                title: 'Categories',
+                title: 'All Categories',
                 onTap: () {
                   Get.find<MainBottomNavScreenController>().changeScreen(1);
                 },
@@ -67,17 +67,26 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 90,
-                child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Get.to(() => const ProductListScreen());
-                        },
-                        child: const CategoryCard(),
-                      );
-                    }),
+                child: GetBuilder<CategoryController>(
+                    builder: (categoryController) {
+                  if (categoryController.getCategoriesInProgress) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ListView.builder(
+                      itemCount:
+                          categoryController.categoryModel.data?.length ?? 0,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(() => const ProductListScreen());
+                          },
+                          child: CategoryCard(categoryData: categoryController.categoryModel.data![index],),
+                        );
+                      });
+                }),
               ),
               const SizedBox(
                 height: 16,

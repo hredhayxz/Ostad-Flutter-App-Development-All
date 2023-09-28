@@ -143,7 +143,6 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             _emailVerificationScreenController.verifyEmail(widget.email);
                             _otpVerificationScreenController.seconds = 120;
                             _otpVerificationScreenController.startTimer();
-
                           }
                         },
                         style: TextButton.styleFrom(

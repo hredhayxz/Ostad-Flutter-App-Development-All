@@ -11,10 +11,7 @@ class Urls {
   static String getHomeSliders = '$_baseUrl/ListProductSlider';
 
   static String getCategories = '$_baseUrl/CategoryList';
-  static String getPopularProducts = '$_baseUrl/ListProductByRemark/popular';
-  static String getSpecialProducts = '$_baseUrl/ListProductByRemark/special';
-  static String getNewProducts = '$_baseUrl/ListProductByRemark/new';
 
-// static String getProductsByRemarks(String remarks) =>
-//     '$_baseUrl/ListProductByRemark/$remarks';
+static String getProductsByRemarks(String remarks) =>
+    '$_baseUrl/ListProductByRemark/$remarks';
 }

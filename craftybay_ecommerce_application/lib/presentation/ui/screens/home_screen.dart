@@ -1,9 +1,7 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/list_product_by_remark_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/state_holders/new_product_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/state_holders/popular_product_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/state_holders/special_product_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
@@ -101,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 title: 'Popular',
                 onTap: () {
                   Get.to(() => ProductListScreen(
-                        productData: Get.find<PopularProductController>()
+                        productData: Get.find<ListProductByRemarkController>()
                                 .popularProductModel
                                 .data ??
                             [],
@@ -109,17 +107,16 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
               ),
-              GetBuilder<PopularProductController>(
-                  builder: (popularProductController) {
-                if (popularProductController.getPopularProductsInProgress) {
+              GetBuilder<ListProductByRemarkController>(
+                  builder: (remarkProductController) {
+                if (remarkProductController.getProductsInProgress) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
                 return ProductListView(
                     productData:
-                        popularProductController.popularProductModel.data ??
-                            []);
+                        remarkProductController.popularProductModel.data ?? []);
               }),
               const SizedBox(
                 height: 16,
@@ -128,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                 title: 'Special',
                 onTap: () {
                   Get.to(() => ProductListScreen(
-                        productData: Get.find<SpecialProductController>()
+                        productData: Get.find<ListProductByRemarkController>()
                                 .specialProductModel
                                 .data ??
                             [],
@@ -136,17 +133,16 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
               ),
-              GetBuilder<SpecialProductController>(
-                  builder: (specialProductController) {
-                if (specialProductController.getSpecialProductsInProgress) {
+              GetBuilder<ListProductByRemarkController>(
+                  builder: (remarkProductController) {
+                if (remarkProductController.getProductsInProgress) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
                 return ProductListView(
                     productData:
-                        specialProductController.specialProductModel.data ??
-                            []);
+                        remarkProductController.specialProductModel.data ?? []);
               }),
               const SizedBox(
                 height: 16,
@@ -155,7 +151,7 @@ class HomeScreen extends StatelessWidget {
                 title: 'New',
                 onTap: () {
                   Get.to(() => ProductListScreen(
-                        productData: Get.find<NewProductController>()
+                        productData: Get.find<ListProductByRemarkController>()
                                 .newProductModel
                                 .data ??
                             [],
@@ -163,15 +159,16 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
               ),
-              GetBuilder<NewProductController>(builder: (newProductController) {
-                if (newProductController.getNewProductsInProgress) {
+              GetBuilder<ListProductByRemarkController>(
+                  builder: (remarkProductController) {
+                if (remarkProductController.getProductsInProgress) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
                 return ProductListView(
                     productData:
-                        newProductController.newProductModel.data ?? []);
+                        remarkProductController.newProductModel.data ?? []);
               }),
             ],
           ),

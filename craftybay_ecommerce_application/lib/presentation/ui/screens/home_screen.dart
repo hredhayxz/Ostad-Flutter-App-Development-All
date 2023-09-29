@@ -95,80 +95,69 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              SectionHeader(
-                title: 'Popular',
-                onTap: () {
-                  Get.to(() => ProductListScreen(
-                        productData: Get.find<ListProductByRemarkController>()
-                                .popularProductModel
-                                .data ??
-                            [],
-                        remarkName: 'Popular',
-                      ));
-                },
-              ),
               GetBuilder<ListProductByRemarkController>(
                   builder: (remarkProductController) {
-                if (remarkProductController.getProductsInProgress) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return ProductListView(
-                    productData:
-                        remarkProductController.popularProductModel.data ?? []);
-              }),
-              const SizedBox(
-                height: 16,
-              ),
-              SectionHeader(
-                title: 'Special',
-                onTap: () {
-                  Get.to(() => ProductListScreen(
-                        productData: Get.find<ListProductByRemarkController>()
-                                .specialProductModel
-                                .data ??
-                            [],
-                        remarkName: 'Special',
-                      ));
-                },
-              ),
-              GetBuilder<ListProductByRemarkController>(
-                  builder: (remarkProductController) {
-                if (remarkProductController.getProductsInProgress) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return ProductListView(
-                    productData:
-                        remarkProductController.specialProductModel.data ?? []);
-              }),
-              const SizedBox(
-                height: 16,
-              ),
-              SectionHeader(
-                title: 'New',
-                onTap: () {
-                  Get.to(() => ProductListScreen(
-                        productData: Get.find<ListProductByRemarkController>()
-                                .newProductModel
-                                .data ??
-                            [],
-                        remarkName: 'New',
-                      ));
-                },
-              ),
-              GetBuilder<ListProductByRemarkController>(
-                  builder: (remarkProductController) {
-                if (remarkProductController.getProductsInProgress) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return ProductListView(
-                    productData:
-                        remarkProductController.newProductModel.data ?? []);
+                return Column(
+                  children: [
+                    SectionHeader(
+                      title: 'Popular',
+                      onTap: () {
+                        Get.to(() => ProductListScreen(
+                              productData: remarkProductController
+                                      .popularProductModel.data ??
+                                  [],
+                              remarkName: 'Popular',
+                            ));
+                      },
+                    ),
+                    remarkProductController.getProductsInProgress
+                        ? const CircularProgressIndicator()
+                        : ProductListView(
+                            productData: remarkProductController
+                                    .popularProductModel.data ??
+                                []),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SectionHeader(
+                      title: 'Special',
+                      onTap: () {
+                        Get.to(() => ProductListScreen(
+                              productData: remarkProductController
+                                      .specialProductModel.data ??
+                                  [],
+                              remarkName: 'Special',
+                            ));
+                      },
+                    ),
+                    remarkProductController.getProductsInProgress
+                        ? const CircularProgressIndicator()
+                        : ProductListView(
+                            productData: remarkProductController
+                                    .specialProductModel.data ??
+                                []),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SectionHeader(
+                      title: 'New',
+                      onTap: () {
+                        Get.to(() => ProductListScreen(
+                              productData: remarkProductController
+                                      .newProductModel.data ??
+                                  [],
+                              remarkName: 'New',
+                            ));
+                      },
+                    ),
+                    remarkProductController.getProductsInProgress
+                        ? const CircularProgressIndicator()
+                        : ProductListView(
+                            productData:
+                                remarkProductController.newProductModel.data ??
+                                    []),
+                  ],
+                );
               }),
             ],
           ),

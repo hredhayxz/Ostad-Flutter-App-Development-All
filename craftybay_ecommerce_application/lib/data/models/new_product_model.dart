@@ -25,3 +25,4 @@ class NewProductModel {
     return data;
   }
 }
+

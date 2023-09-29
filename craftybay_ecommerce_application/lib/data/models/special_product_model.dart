@@ -25,3 +25,4 @@ class SpecialProductModel {
     return data;
   }
 }
+

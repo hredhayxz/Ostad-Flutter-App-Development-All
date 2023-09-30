@@ -1,8 +1,10 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/state_holders/list_product_by_remark_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/new_product_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/popular_product_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/special_product_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/cart_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/home_screen.dart';
@@ -30,9 +32,9 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.find<HomeSlidersController>().getHomeSliders();
       Get.find<CategoryController>().getCategories();
-      Get.find<ListProductByRemarkController>().getListProductByRemark('popular');
-      Get.find<ListProductByRemarkController>().getListProductByRemark('special');
-      Get.find<ListProductByRemarkController>().getListProductByRemark('new');
+      Get.find<PopularProductController>().getPopularProducts();
+      Get.find<SpecialProductController>().getSpecialProducts();
+      Get.find<NewProductController>().getNewProducts();
     });
     super.initState();
   }

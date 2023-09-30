@@ -16,7 +16,7 @@ class HomeSlider extends StatelessWidget {
         CarouselSlider(
           options: CarouselOptions(
               height: 320.0,
-              autoPlay: true,
+              autoPlay: false,
               autoPlayInterval: const Duration(seconds: 3),
               viewportFraction: 1,
               onPageChanged: (int page, _) {

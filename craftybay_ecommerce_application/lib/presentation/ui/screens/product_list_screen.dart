@@ -34,7 +34,7 @@ class ProductListScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => ProductDetailsScreen());
+                Get.to(() => ProductDetailsScreen(productId: productData[index].id!,));
               },
               child: FittedBox(
                 child: ProductCard(

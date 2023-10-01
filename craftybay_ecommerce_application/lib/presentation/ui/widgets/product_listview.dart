@@ -19,9 +19,13 @@ class ProductListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.to(() => ProductDetailsScreen());
+              Get.to(() => ProductDetailsScreen(
+                    productId: productData[index].id!,
+                  ));
             },
-            child: ProductCard(productData: productData[index],),
+            child: ProductCard(
+              productData: productData[index],
+            ),
           );
         },
       ),

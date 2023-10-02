@@ -1,20 +1,22 @@
+import 'dart:developer';
+
 import 'package:craftybay_ecommerce_application/data/models/network_response.dart';
 import 'package:craftybay_ecommerce_application/data/models/product_details_model.dart';
 import 'package:craftybay_ecommerce_application/data/services/network_caller.dart';
 import 'package:craftybay_ecommerce_application/data/utility/urls.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsScreenController extends GetxController {
   bool _getProductDetailsInProgress = false;
   ProductDetailsData _productDetailsData = ProductDetailsData();
   String _errorMessage = '';
-  final List<String> _availableColors = [];
+  final List<String> colorCodes = [];
+  final List<Color> colors = [];
 
   bool get getProductDetailsInProgress => _getProductDetailsInProgress;
 
   ProductDetailsData get productDetailsData => _productDetailsData;
-
-  List<String> get availableColors => _availableColors;
 
   String get errorMessage => _errorMessage;
 
@@ -29,7 +31,10 @@ class ProductDetailsScreenController extends GetxController {
           (ProductDetailsModel.fromJson(response.responseJson ?? {}))
               .data!
               .first;
-      _convertStringToColor(_productDetailsData.color ?? '');
+      _storeColorCodes(_productDetailsData.color ?? '');
+      _convertColorCode();
+      log(colorCodes.toString());
+      log(colors.toString());
       update();
       return true;
     } else {
@@ -39,12 +44,19 @@ class ProductDetailsScreenController extends GetxController {
     }
   }
 
-  void _convertStringToColor(String color) {
+  void _storeColorCodes(String color) {
     final List<String> splittedColors = color.split(',');
     for (String c in splittedColors) {
       if (c.isNotEmpty) {
-        _availableColors.add(c);
+        colorCodes.add(c);
       }
+    }
+  }
+
+  void _convertColorCode() {
+    for (var code in colorCodes) {
+      final color = Color(int.parse(code.replaceAll('#', '0xFF')));
+      colors.add(color);
     }
   }
 }

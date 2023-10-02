@@ -29,17 +29,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     });
   }
 
-  List<Color> colors = [
-    Colors.deepOrange,
-    Colors.amber,
-    Colors.blue,
-    Colors.yellow,
-    Colors.pink,
-    Colors.black,
-  ];
-
-  List<String> sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
-
   int _selectedColorIndex = 0;
 
   int _selectedSizeIndex = 0;
@@ -57,75 +46,80 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         return SafeArea(
           child: Column(
             children: [
-              SingleChildScrollView(
-                child: Stack(
-                  children: [
-                    ProductImageSlider(
-                      imageList: [
-                        productDetailsScreenController
-                                .productDetailsData.img1 ??
-                            '',
-                        productDetailsScreenController
-                                .productDetailsData.img2 ??
-                            '',
-                        productDetailsScreenController
-                                .productDetailsData.img3 ??
-                            '',
-                        productDetailsScreenController
-                                .productDetailsData.img4 ??
-                            '',
-                      ],
-                    ),
-                    const CustomAppBar(
-                      title: 'Product Details',
-                      elevation: 0,
-                    ),
-                  ],
-                ),
-              ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
+                child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProductNameWithStepper(
-                        productTitle: productDetailsScreenController
-                                .productDetailsData.product!.title ??
-                            '',
+                      Stack(
+                        children: [
+                          ProductImageSlider(
+                            imageList: [
+                              productDetailsScreenController
+                                      .productDetailsData.img1 ??
+                                  '',
+                              productDetailsScreenController
+                                      .productDetailsData.img2 ??
+                                  '',
+                              productDetailsScreenController
+                                      .productDetailsData.img3 ??
+                                  '',
+                              productDetailsScreenController
+                                      .productDetailsData.img4 ??
+                                  '',
+                            ],
+                          ),
+                          const CustomAppBar(
+                            title: 'Product Details',
+                            elevation: 0,
+                          ),
+                        ],
                       ),
-                      ProductRatingReviewWishList(
-                          productRating: productDetailsScreenController
-                                  .productDetailsData.product!.star ??
-                              0),
-                      SelectProductColor(
-                          colors: colors,
-                          onSelected: (int selectedColor) {
-                            _selectedColorIndex = selectedColor;
-                          },
-                          initialSelected: 0),
-                      const SizedBox(
-                        height: 16,
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ProductNameWithStepper(
+                              productTitle: productDetailsScreenController
+                                      .productDetailsData.product!.title ??
+                                  '',
+                            ),
+                            ProductRatingReviewWishList(
+                                productRating: productDetailsScreenController
+                                        .productDetailsData.product!.star ??
+                                    0),
+                            SelectProductColor(
+                                colors:
+                                    productDetailsScreenController.colors ?? [],
+                                onSelected: (int selectedColor) {
+                                  _selectedColorIndex = selectedColor;
+                                },
+                                initialSelected: 0),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            SelectProductSize(
+                                sizes: productDetailsScreenController
+                                        .productDetailsData.size!
+                                        .split(',') ??
+                                    [],
+                                onSelected: (int selectedSize) {
+                                  _selectedSizeIndex = selectedSize;
+                                },
+                                initialSelected: 0),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            const SectionTitle(title: 'Description'),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Text(productDetailsScreenController
+                                    .productDetailsData.des ??
+                                ''),
+                          ],
+                        ),
                       ),
-                      SelectProductSize(
-                          sizes: productDetailsScreenController
-                                  .productDetailsData.size!
-                                  .split(',') ??
-                              [],
-                          onSelected: (int selectedSize) {
-                            _selectedSizeIndex = selectedSize;
-                          },
-                          initialSelected: 0),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      const SectionTitle(title: 'Description'),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Text(productDetailsScreenController
-                              .productDetailsData.des ??
-                          ''),
                     ],
                   ),
                 ),

@@ -23,10 +23,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<ProductDetailsScreenController>()
-          .getProductDetails(widget.productId);
-    });
+    Get.find<ProductDetailsScreenController>()
+        .getProductDetails(widget.productId);
   }
 
   int _selectedColorIndex = 0;
@@ -55,16 +53,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ProductImageSlider(
                             imageList: [
                               productDetailsScreenController
-                                      .productDetailsData.img1 ??
+                                      .productDetailsData?.img1 ??
                                   '',
                               productDetailsScreenController
-                                      .productDetailsData.img2 ??
+                                      .productDetailsData?.img2 ??
                                   '',
                               productDetailsScreenController
-                                      .productDetailsData.img3 ??
+                                      .productDetailsData?.img3 ??
                                   '',
                               productDetailsScreenController
-                                      .productDetailsData.img4 ??
+                                      .productDetailsData?.img4 ??
                                   '',
                             ],
                           ),

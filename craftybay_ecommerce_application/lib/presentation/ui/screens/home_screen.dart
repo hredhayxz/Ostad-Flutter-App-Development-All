@@ -1,4 +1,5 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/category_product_list_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/new_product_controller.dart';
@@ -82,14 +83,26 @@ class HomeScreen extends StatelessWidget {
                           categoryController.categoryModel.data?.length ?? 0,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            //Get.to(() => const ProductListScreen());
-                          },
-                          child: CategoryCard(
-                            categoryData:
-                                categoryController.categoryModel.data![index],
-                          ),
+                        return GetBuilder<CategoryProductListController>(
+                          builder: (categoryProductListController) {
+                            return GestureDetector(
+                              onTap: () {
+                                categoryProductListController.getProductsByCategory(index+1);
+                                Get.to(() => ProductListScreen(
+                                    productData:
+                                    categoryProductListController.productModel
+                                                .data ??
+                                            [],
+                                    remarkName: categoryController.categoryModel
+                                            .data![index].categoryName ??
+                                        ''));
+                              },
+                              child: CategoryCard(
+                                categoryData:
+                                    categoryController.categoryModel.data![index],
+                              ),
+                            );
+                          }
                         );
                       });
                 }),

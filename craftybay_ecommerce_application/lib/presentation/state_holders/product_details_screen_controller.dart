@@ -11,14 +11,16 @@ class ProductDetailsScreenController extends GetxController {
   bool _getProductDetailsInProgress = false;
   ProductDetailsData _productDetailsData = ProductDetailsData();
   String _errorMessage = '';
-  final List<String> colorCodes = [];
-  final List<Color> colors = [];
+  final List<String> _colorCodes = [];
+  final List<Color> _colors = [];
 
   bool get getProductDetailsInProgress => _getProductDetailsInProgress;
 
   ProductDetailsData get productDetailsData => _productDetailsData;
 
   String get errorMessage => _errorMessage;
+  List<String> get availableColorCodes => _colorCodes;
+   List<Color> get availableColors => _colors;
 
   Future<bool> getProductDetails(int id) async {
     _getProductDetailsInProgress = true;
@@ -31,10 +33,12 @@ class ProductDetailsScreenController extends GetxController {
           (ProductDetailsModel.fromJson(response.responseJson ?? {}))
               .data!
               .first;
+      _colorCodes.clear();
+      _colors.clear();
       _storeColorCodes(_productDetailsData.color ?? '');
       _convertColorCode();
-      log(colorCodes.toString());
-      log(colors.toString());
+      log(_colorCodes.toString());
+      log(_colors.toString());
       update();
       return true;
     } else {
@@ -48,15 +52,15 @@ class ProductDetailsScreenController extends GetxController {
     final List<String> splittedColors = color.split(',');
     for (String c in splittedColors) {
       if (c.isNotEmpty) {
-        colorCodes.add(c);
+        _colorCodes.add(c);
       }
     }
   }
 
   void _convertColorCode() {
-    for (var code in colorCodes) {
+    for (var code in _colorCodes) {
       final color = Color(int.parse(code.replaceAll('#', '0xFF')));
-      colors.add(color);
+      _colors.add(color);
     }
   }
 }

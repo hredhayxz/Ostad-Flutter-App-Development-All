@@ -88,7 +88,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     0),
                             SelectProductColor(
                                 colors:
-                                    productDetailsScreenController.colors ?? [],
+                                    productDetailsScreenController.availableColors ?? [],
                                 onSelected: (int selectedColor) {
                                   _selectedColorIndex = selectedColor;
                                 },

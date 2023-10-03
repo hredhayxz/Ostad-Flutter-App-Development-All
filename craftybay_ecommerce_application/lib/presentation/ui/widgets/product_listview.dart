@@ -20,8 +20,6 @@ class ProductListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.find<ProductDetailsScreenController>().colorCodes.clear();
-              Get.find<ProductDetailsScreenController>().colors.clear();
               Get.to(() => ProductDetailsScreen(
                     productId: productData[index].id!,
                   ));

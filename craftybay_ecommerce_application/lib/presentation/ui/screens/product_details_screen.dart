@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:craftybay_ecommerce_application/presentation/state_holders/product_details_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/custom_appbar.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/product_details/product_image_slider.dart';
@@ -87,10 +89,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         .productDetailsData.product!.star ??
                                     0),
                             SelectProductColor(
-                                colors:
-                                    productDetailsScreenController.availableColors ?? [],
+                                colors: productDetailsScreenController
+                                        .availableColors ??
+                                    [],
                                 onSelected: (int selectedColor) {
                                   _selectedColorIndex = selectedColor;
+                                  log(_selectedColorIndex.toString());
+                                  //productDetailsScreenController.updateAllState;
+                                  setState(() {});
+                                  log(productDetailsScreenController
+                                      .availableColors[_selectedColorIndex]
+                                      .toString());
                                 },
                                 initialSelected: 0),
                             const SizedBox(
@@ -98,11 +107,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             SelectProductSize(
                                 sizes: productDetailsScreenController
-                                        .productDetailsData.size!
-                                        .split(',') ??
+                                        .availableSizes ??
                                     [],
                                 onSelected: (int selectedSize) {
                                   _selectedSizeIndex = selectedSize;
+                                  log(_selectedSizeIndex.toString());
+                                  //productDetailsScreenController.updateAllState;
+                                  setState(() {});
+                                  log(productDetailsScreenController
+                                      .availableSizes[_selectedSizeIndex]);
                                 },
                                 initialSelected: 0),
                             const SizedBox(
@@ -122,9 +135,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
               ),
-              const BottomNavCard(
-                price: '\$1000',
-              ),
+              BottomNavCard(
+                  productId: widget.productId,
+                  productColor: productDetailsScreenController
+                      .availableColors[_selectedColorIndex]
+                      .toString(),
+                  productSize: productDetailsScreenController
+                          .availableSizes[_selectedSizeIndex] ??
+                      '')
             ],
           ),
         );

@@ -13,14 +13,21 @@ class ProductDetailsScreenController extends GetxController {
   String _errorMessage = '';
   final List<String> _colorCodes = [];
   final List<Color> _colors = [];
+  List<String> _availableSizes = [];
 
   bool get getProductDetailsInProgress => _getProductDetailsInProgress;
 
   ProductDetailsData get productDetailsData => _productDetailsData;
 
   String get errorMessage => _errorMessage;
-  List<String> get availableColorCodes => _colorCodes;
-   List<Color> get availableColors => _colors;
+
+  List<Color> get availableColors => _colors;
+
+  List<String> get availableSizes => _availableSizes;
+
+  void updateAllState() {
+    update();
+  }
 
   Future<bool> getProductDetails(int id) async {
     _getProductDetailsInProgress = true;
@@ -37,7 +44,7 @@ class ProductDetailsScreenController extends GetxController {
       _colors.clear();
       _storeColorCodes(_productDetailsData.color ?? '');
       _convertColorCode();
-      log(_colorCodes.toString());
+      _convertStringToSizes(_productDetailsData.size ?? '');
       log(_colors.toString());
       update();
       return true;
@@ -62,5 +69,9 @@ class ProductDetailsScreenController extends GetxController {
       final color = Color(int.parse(code.replaceAll('#', '0xFF')));
       _colors.add(color);
     }
+  }
+
+  void _convertStringToSizes(String sizes) {
+    _availableSizes = sizes.split(',');
   }
 }

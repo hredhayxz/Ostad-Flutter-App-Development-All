@@ -83,26 +83,24 @@ class HomeScreen extends StatelessWidget {
                           categoryController.categoryModel.data?.length ?? 0,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return GetBuilder<CategoryProductListController>(
-                          builder: (categoryProductListController) {
-                            return GestureDetector(
-                              onTap: () {
-                                categoryProductListController.getProductsByCategory(index+1);
-                                Get.to(() => ProductListScreen(
-                                    productData:
-                                    categoryProductListController.productModel
-                                                .data ??
-                                            [],
-                                    remarkName: categoryController.categoryModel
-                                            .data![index].categoryName ??
-                                        ''));
-                              },
-                              child: CategoryCard(
-                                categoryData:
-                                    categoryController.categoryModel.data![index],
-                              ),
-                            );
-                          }
+                        return GestureDetector(
+                          onTap: () async {
+                            await Get.find<CategoryProductListController>()
+                                .getProductsByCategory(index + 1);
+                            Get.to(() => ProductListScreen(
+                                productData:
+                                    Get.find<CategoryProductListController>()
+                                            .productModel
+                                            .data ??
+                                        [],
+                                remarkName: categoryController.categoryModel
+                                        .data![index].categoryName ??
+                                    ''));
+                          },
+                          child: CategoryCard(
+                            categoryData:
+                                categoryController.categoryModel.data![index],
+                          ),
                         );
                       });
                 }),

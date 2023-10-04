@@ -1,6 +1,7 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/email_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/otp_verification_screen_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/cart_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_product_list_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
@@ -26,6 +27,7 @@ class StateHolderBinder extends Bindings
     Get.put(ProductDetailsScreenController());
     Get.put(AddToCartController());
     Get.put(CategoryProductListController());
+    Get.put(CartScreenController());
   }
 
 }

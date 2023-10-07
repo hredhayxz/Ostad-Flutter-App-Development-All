@@ -1,7 +1,6 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/state_holders/category_product_list_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -47,17 +46,11 @@ class CategoryListScreen extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () async {
-                      await Get.find<CategoryProductListController>()
-                          .getProductsByCategory(index + 1);
-                      Get.to(() => ProductListScreen(
-                          productData:
-                          Get.find<CategoryProductListController>()
-                              .productModel
-                              .data ??
-                              [],
-                          remarkName: categoryController.categoryModel
-                              .data![index].categoryName ??
+                    onTap: () {
+                      Get.to(() => CategoryProductListScreen(
+                          categoryId: index + 1,
+                          remarkName: categoryController
+                                  .categoryModel.data![index].categoryName ??
                               ''));
                     },
                     child: FittedBox(

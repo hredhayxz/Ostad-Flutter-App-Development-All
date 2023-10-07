@@ -1,10 +1,10 @@
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
-import 'package:craftybay_ecommerce_application/presentation/state_holders/category_product_list_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/new_product_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/popular_product_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/special_product_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/category_product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/category_card.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/home/home_slider.dart';
@@ -84,15 +84,9 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () async {
-                            await Get.find<CategoryProductListController>()
-                                .getProductsByCategory(index + 1);
-                            Get.to(() => ProductListScreen(
-                                productData:
-                                    Get.find<CategoryProductListController>()
-                                            .productModel
-                                            .data ??
-                                        [],
+                          onTap: () {
+                            Get.to(() => CategoryProductListScreen(
+                                categoryId: index + 1,
                                 remarkName: categoryController.categoryModel
                                         .data![index].categoryName ??
                                     ''));

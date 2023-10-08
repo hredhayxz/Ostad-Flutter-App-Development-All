@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
-import 'package:craftybay_ecommerce_application/data/models/product_details_model.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

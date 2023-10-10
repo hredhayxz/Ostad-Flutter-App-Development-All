@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/email_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/otp_verification_screen_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/create_profile_screen.dart';
+import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/read_profile_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/main_bottom_nav_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
@@ -176,7 +180,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           colorText: Colors.white,
           borderRadius: 10,
           snackPosition: SnackPosition.BOTTOM);
-      Get.offAll(() => CreateProfileScreen());
+      Get.offAll(() => ReadProfileScreen());
     } else {
       Get.snackbar('Failed', 'Otp verification failed! Try again',
           backgroundColor: Colors.red,

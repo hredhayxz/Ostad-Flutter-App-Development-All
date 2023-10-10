@@ -16,6 +16,7 @@ class Urls {
   static String getNewProducts = '$_baseUrl/ListProductByRemark/new';
   static String getCartProducts = '$_baseUrl/CartList';
   static String createProfile = '$_baseUrl/CreateProfile';
+  static String readProfile = '$_baseUrl/ReadProfile';
 
 // static String getProductsByRemarks(String remarks) =>
 //     '$_baseUrl/ListProductByRemark/$remarks';

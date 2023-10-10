@@ -42,6 +42,7 @@ class _CraftyBayState extends State<CraftyBay> {
     if (status != ConnectivityResult.mobile &&
         status != ConnectivityResult.wifi) {
       Get.defaultDialog(
+        
         title: "No Internet",
         middleText: "Please check your internet connection.",
         barrierDismissible: false,

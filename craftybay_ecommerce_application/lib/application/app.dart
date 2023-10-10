@@ -41,15 +41,14 @@ class _CraftyBayState extends State<CraftyBay> {
   void handleConnectivityStates(ConnectivityResult status) {
     if (status != ConnectivityResult.mobile &&
         status != ConnectivityResult.wifi) {
-      Get.showSnackbar(const GetSnackBar(
-        title: 'No internet!',
-        message: 'Please check your internet connectivity',
-        isDismissible: false,
-      ));
+      Get.defaultDialog(
+        title: "No Internet",
+        middleText: "Please check your internet connection.",
+        barrierDismissible: false,
+        titleStyle: const TextStyle(color: Colors.red),
+      );
     } else {
-      if (Get.isSnackbarOpen) {
-        Get.closeAllSnackbars();
-      }
+      Get.back();
     }
   }
 

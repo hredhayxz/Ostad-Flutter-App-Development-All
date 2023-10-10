@@ -76,7 +76,7 @@ class BottomNavCard extends StatelessWidget {
                           snackPosition: SnackPosition.BOTTOM);
                     } else {
                       Get.snackbar(
-                          'Failed', 'Profile update failed! Try again.',
+                          'Failed', 'Add to cart failed! Try again.',
                           backgroundColor: Colors.red,
                           colorText: Colors.white,
                           borderRadius: 10,

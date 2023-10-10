@@ -136,7 +136,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ),
               BottomNavCard(
-                  productId: widget.productId,
+                  productDetailsData: productDetailsScreenController.productDetailsData,
                   productColor: productDetailsScreenController
                       .availableColors[_selectedColorIndex]
                       .toString(),

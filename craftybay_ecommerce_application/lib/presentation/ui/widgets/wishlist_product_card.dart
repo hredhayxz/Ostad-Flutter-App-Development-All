@@ -29,8 +29,7 @@ class WishListProductCard extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                   image: DecorationImage(
-                      image: NetworkImage(productData.image ??
-                          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&w=1000&q=80'))),
+                      image: NetworkImage(productData.image ?? ''))),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

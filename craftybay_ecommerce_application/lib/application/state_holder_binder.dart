@@ -6,6 +6,7 @@ import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/
 import 'package:craftybay_ecommerce_application/presentation/state_holders/cart_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/category_product_list_controller.dart';
+import 'package:craftybay_ecommerce_application/presentation/state_holders/create_wishlist_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/delete_cart_list_product_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/home_slider_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/main_bottom_nav_screen_controller.dart';
@@ -36,6 +37,7 @@ class StateHolderBinder extends Bindings
     Get.put(ReadProfileController());
     Get.put(DeleteCartListProductController());
     Get.put(WishListScreenController());
+    Get.put(CreateWishListController());
   }
 
 }

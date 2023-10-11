@@ -1,9 +1,9 @@
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
-import 'package:craftybay_ecommerce_application/data/models/product_model.dart';
+import 'package:craftybay_ecommerce_application/data/models/wishlist_product_model.dart';
 import 'package:flutter/material.dart';
 
 class WishListProductCard extends StatelessWidget {
-  final ProductData productData;
+  final WishListProductData productData;
 
   const WishListProductCard({
     super.key,
@@ -28,17 +28,16 @@ class WishListProductCard extends StatelessWidget {
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
-                  image: DecorationImage(
-                      image: NetworkImage(productData.image ?? ''))),
+                  image: const DecorationImage(image: NetworkImage('https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&w=1000&q=80'))),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Text(
-                    productData.title ?? '',
+                  const Text(
+                    'API Problem',
                     maxLines: 1,
-                    style: const TextStyle(
+                    style: TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -51,23 +50,23 @@ class WishListProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$${productData.price ?? 0}',
+                        '\$0',
                         style: TextStyle(
                             fontSize: 13,
                             color: AppColors.primaryColor,
                             fontWeight: FontWeight.w500),
                       ),
-                      Wrap(
+                      const Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.star,
                             size: 15,
                             color: Colors.amber,
                           ),
                           Text(
-                            '${productData.star ?? 0}',
-                            style: const TextStyle(
+                            '0',
+                            style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,

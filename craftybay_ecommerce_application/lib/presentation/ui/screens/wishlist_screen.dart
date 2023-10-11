@@ -66,7 +66,7 @@ class _WishListScreenState extends State<WishListScreen> {
                   onTap: () {
                     Get.to(() => ProductDetailsScreen(
                           productId: wishListScreenController
-                              .wishListProductModel.data![index].id!,
+                              .wishListProductModel.data![index].productId!,
                         ));
                   },
                   child: FittedBox(

@@ -180,7 +180,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           colorText: Colors.white,
           borderRadius: 10,
           snackPosition: SnackPosition.BOTTOM);
-      Get.offAll(() => ReadProfileScreen());
+      //Get.offAll(() => ReadProfileScreen());
+      Get.offAll(() => const MainBottomNavScreen());
     } else {
       Get.snackbar('Failed', 'Otp verification failed! Try again',
           backgroundColor: Colors.red,

@@ -46,6 +46,11 @@ class _CartScreenState extends State<CartScreen> {
               child: CircularProgressIndicator(),
             );
           }
+          if (cartScreenController.cartListModel.data != null && cartScreenController.cartListModel.data!.isEmpty) {
+            return const Center(
+              child: Text('Cart is empty!'),
+            );
+          }
           return Column(
             children: [
               Expanded(

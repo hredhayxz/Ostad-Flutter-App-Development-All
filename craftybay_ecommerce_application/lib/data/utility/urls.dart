@@ -26,4 +26,7 @@ class Urls {
 
   static String getProductListByCategory(int categoryId) =>
       '$_baseUrl/ListProductByCategory/$categoryId';
+
+  static String deleteCartProduct(int productId) =>
+      '$_baseUrl/DeleteCartList/$productId';
 }

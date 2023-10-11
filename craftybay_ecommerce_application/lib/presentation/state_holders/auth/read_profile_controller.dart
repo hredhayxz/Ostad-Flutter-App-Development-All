@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:craftybay_ecommerce_application/data/models/network_response.dart';
 import 'package:craftybay_ecommerce_application/data/models/read_profile_model.dart';
 import 'package:craftybay_ecommerce_application/data/services/network_caller.dart';
@@ -19,6 +21,7 @@ class ReadProfileController extends GetxController {
         await NetworkCaller().getRequest(Urls.readProfile);
     _readProfileInProgress=false;
     update();
+    log(response.isSuccess.toString());
     if (response.isSuccess) {
       //_profileData =ProfileData.fromJson(response.responseJson??{});
       return true;

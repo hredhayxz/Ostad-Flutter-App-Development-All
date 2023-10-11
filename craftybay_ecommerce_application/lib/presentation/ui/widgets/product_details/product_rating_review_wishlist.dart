@@ -35,7 +35,7 @@ class ProductRatingReviewWishList extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => const ProductReviewScreen());
+            Get.to(() => ProductReviewScreen(productId: productDetailsData.productId!,));
           },
           child: Text(
             'Reviews',

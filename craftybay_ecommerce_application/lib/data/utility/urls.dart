@@ -33,4 +33,7 @@ class Urls {
 
   static String setProductInWishList(int productId) =>
       '$_baseUrl/CreateWishList/$productId';
+
+  static String getReviews(int productId) =>
+      '$_baseUrl/ListReviewByProduct/$productId';
 }

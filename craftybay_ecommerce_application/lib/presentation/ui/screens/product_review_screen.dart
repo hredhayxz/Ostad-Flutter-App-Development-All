@@ -22,7 +22,9 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
       await Get.find<ProductReviewScreenController>()
           .getProductReviews(widget.productId);
     });
+setState(() {
 
+});
     super.initState();
   }
 
@@ -79,7 +81,9 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(() => const CreateReviewScreen());
+                      Get.to(() => CreateReviewScreen(
+                            productId: widget.productId,
+                          ));
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: CircleAvatar(

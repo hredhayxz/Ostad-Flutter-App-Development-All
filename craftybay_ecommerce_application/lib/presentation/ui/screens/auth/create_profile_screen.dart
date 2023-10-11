@@ -92,7 +92,7 @@ class CreateProfileScreen extends StatelessWidget {
                       if (text?.isEmpty ?? true) {
                         return 'Enter your mobile number';
                       } else {
-                        if (text!.length < 10) {
+                        if (text!.length < 11) {
                           return 'Mobile should be 11 digit';
                         }
                       }

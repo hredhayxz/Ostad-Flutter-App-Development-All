@@ -82,13 +82,13 @@ class ProductCard extends StatelessWidget {
                         return Card(
                           color: AppColors.primaryColor,
                           child: Padding(
-                            padding: EdgeInsets.all(2.0),
+                            padding: const EdgeInsets.all(2.0),
                             child: InkWell(
                               onTap: () async {
                                 await setThisProductInWishlist(
                                     createWishListController);
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.favorite_border,
                                 size: 12,
                                 color: Colors.white,

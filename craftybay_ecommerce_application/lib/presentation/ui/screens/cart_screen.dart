@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/cart_screen_con'
     'troller.dart';
@@ -46,7 +44,8 @@ class _CartScreenState extends State<CartScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          if (cartScreenController.cartListModel.data != null && cartScreenController.cartListModel.data!.isEmpty) {
+          if (cartScreenController.cartListModel.data != null &&
+              cartScreenController.cartListModel.data!.isEmpty) {
             return const Center(
               child: Text('Cart is empty!'),
             );

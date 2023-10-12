@@ -5,7 +5,6 @@ import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/otp_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/create_profile_screen.dart';
-import 'package:craftybay_ecommerce_application/presentation/ui/screens/auth/read_profile_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/screens/main_bottom_nav_screen.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/craftyBay_logo.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   @override
   void initState() {
     super.initState();
-    _otpVerificationScreenController.seconds=120;
+    _otpVerificationScreenController.seconds = 120;
     _otpVerificationScreenController.startTimer();
   }
 
@@ -181,8 +180,15 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           colorText: Colors.white,
           borderRadius: 10,
           snackPosition: SnackPosition.BOTTOM);
-      //Get.offAll(() => ReadProfileScreen());
-      Get.offAll(() => const MainBottomNavScreen());
+      Future.delayed(const Duration(seconds: 5)).then((value) {
+        log('DataProfile: ${Get.find<ReadProfileController>().readProfileModel.data}');
+      });
+      Future.delayed(const Duration(seconds: 5)).then((value) async =>
+          await Get.find<ReadProfileController>().readProfileData());
+
+      Get.find<ReadProfileController>().readProfileModel.data == null
+          ? Get.offAll(() => const MainBottomNavScreen())
+          : Get.offAll(() => CreateProfileScreen());
     } else {
       Get.snackbar('Failed', 'Otp verification failed! Try again',
           backgroundColor: Colors.red,

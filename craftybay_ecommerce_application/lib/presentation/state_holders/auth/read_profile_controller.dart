@@ -7,25 +7,22 @@ import 'package:craftybay_ecommerce_application/data/utility/urls.dart';
 import 'package:get/get.dart';
 
 class ReadProfileController extends GetxController {
-  bool _readProfileInProgress = false;
   String _message = '';
-  ProfileData _profileData = ProfileData();
-  bool get readProfileInProgress=>_readProfileInProgress;
+  ReadProfileModel _readProfileModel = ReadProfileModel();
+
   String get message => _message;
-  ProfileData get profileData => _profileData;
+
+  ReadProfileModel get readProfileModel => _readProfileModel;
 
   Future<bool> readProfileData() async {
-    _readProfileInProgress=true;
-    update();
     final NetworkResponse response =
         await NetworkCaller().getRequest(Urls.readProfile);
-    _readProfileInProgress=false;
-    update();
-    log(response.isSuccess.toString());
     if (response.isSuccess) {
-      //_profileData =ProfileData.fromJson(response.responseJson??{});
+      _readProfileModel =
+          ReadProfileModel.fromJson(response.responseJson ?? {});
       return true;
     } else {
+      _message = 'Read profile data fetch failed!';
       return false;
     }
   }

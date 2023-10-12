@@ -31,6 +31,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   @override
   void initState() {
     super.initState();
+    _otpVerificationScreenController.seconds=120;
     _otpVerificationScreenController.startTimer();
   }
 
@@ -188,6 +189,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           colorText: Colors.white,
           borderRadius: 10,
           snackPosition: SnackPosition.BOTTOM);
+      _otpTEController.clear();
+      controller.timer.cancel();
     }
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:craftybay_ecommerce_application/application/utility/app_colors.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/email_verification_screen_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/state_holders/auth/otp_verification_screen_controller.dart';
@@ -180,13 +178,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           colorText: Colors.white,
           borderRadius: 10,
           snackPosition: SnackPosition.BOTTOM);
-      Future.delayed(const Duration(seconds: 5)).then((value) {
-        log('DataProfile: ${Get.find<ReadProfileController>().readProfileModel.data}');
-      });
-      Future.delayed(const Duration(seconds: 5)).then((value) async =>
+      await Future.delayed(const Duration(seconds: 3)).then((value) async =>
           await Get.find<ReadProfileController>().readProfileData());
 
-      Get.find<ReadProfileController>().readProfileModel.data == null
+      Get.find<ReadProfileController>().readProfileModel.data?.length == 1
           ? Get.offAll(() => const MainBottomNavScreen())
           : Get.offAll(() => CreateProfileScreen());
     } else {

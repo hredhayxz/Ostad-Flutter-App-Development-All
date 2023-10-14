@@ -19,7 +19,7 @@ class WishListScreenController extends GetxController {
     _getWishListProductsInProgress = true;
     update();
     final NetworkResponse response =
-        await NetworkCaller().getRequest(Urls.productWishList);
+        await NetworkCaller().getRequest(Urls.productWishList, isLogin: true);
     _getWishListProductsInProgress = false;
     if (response.isSuccess) {
       _wishListProductModel =

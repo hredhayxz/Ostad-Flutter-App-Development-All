@@ -10,7 +10,7 @@ class CreateWishListController extends GetxController {
 
   Future<bool> setProductInWishList(int productId) async {
     final NetworkResponse response =
-        await NetworkCaller().getRequest(Urls.setProductInWishList(productId));
+        await NetworkCaller().getRequest(Urls.setProductInWishList(productId), isLogin: true);
     if (response.isSuccess) {
       return true;
     } else {

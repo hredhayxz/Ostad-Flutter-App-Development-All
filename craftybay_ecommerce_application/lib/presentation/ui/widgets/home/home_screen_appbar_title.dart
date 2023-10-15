@@ -2,10 +2,16 @@ import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_p
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-class HomeScreenAppbarTitle extends StatelessWidget {
+class HomeScreenAppbarTitle extends StatefulWidget {
   const HomeScreenAppbarTitle({super.key});
 
+  @override
+  State<HomeScreenAppbarTitle> createState() => _HomeScreenAppbarTitleState();
+}
+
+class _HomeScreenAppbarTitleState extends State<HomeScreenAppbarTitle> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,6 +37,17 @@ class HomeScreenAppbarTitle extends StatelessWidget {
         CircularIconButton(
           icon: Icons.notifications_none,
           onTap: () {},
+        ),
+        CircularIconButton(
+          icon: Get.isDarkMode ? Icons.sunny : Icons.nightlight,
+          onTap: () {
+            if (Get.isDarkMode) {
+              Get.changeThemeMode(ThemeMode.light);
+            } else {
+              Get.changeThemeMode(ThemeMode.dark);
+            }
+            setState(() {});
+          },
         ),
       ],
     );

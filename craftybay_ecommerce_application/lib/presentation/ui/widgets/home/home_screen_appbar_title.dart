@@ -1,3 +1,4 @@
+import 'package:craftybay_ecommerce_application/presentation/state_holders/theme_manager_controller.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/utility/assets_path.dart';
 import 'package:craftybay_ecommerce_application/presentation/ui/widgets/circular_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +39,18 @@ class _HomeScreenAppbarTitleState extends State<HomeScreenAppbarTitle> {
           icon: Icons.notifications_none,
           onTap: () {},
         ),
+        const SizedBox(
+          width: 12,
+        ),
         CircularIconButton(
-          icon: Get.isDarkMode ? Icons.sunny : Icons.nightlight,
+          icon: Get.isDarkMode ? Icons.nightlight : Icons.sunny,
           onTap: () {
             if (Get.isDarkMode) {
               Get.changeThemeMode(ThemeMode.light);
+              ThemeManager.setThemeMode(ThemeMode.light);
             } else {
               Get.changeThemeMode(ThemeMode.dark);
+              ThemeManager.setThemeMode(ThemeMode.dark);
             }
             setState(() {});
           },
